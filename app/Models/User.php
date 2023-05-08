@@ -56,7 +56,7 @@ class User extends Authenticatable
     /**
      * @return BelongsToMany
      */
-    public function subjects(): BelongsToMany
+   /* public function subjects(): BelongsToMany
     {
         return $this->belongsToMany(Subject::class)->withTimestamps();
     }
@@ -64,7 +64,7 @@ class User extends Authenticatable
     /**
      * @return BelongsToMany
      */
-    public function classes(): BelongsToMany
+   /* public function classes(): BelongsToMany
     {
         return $this->belongsToMany(Classe::class, 'class_user', 'user_id', 'class_id')->withTimestamps();
     }
@@ -72,8 +72,9 @@ class User extends Authenticatable
     /**
      * @return HasMany
      */
-    public function attendances(): HasMany
+   /* public function attendances(): HasMany
     {
         return $this->hasMany(Attendance::class);
     }
+    */
 }

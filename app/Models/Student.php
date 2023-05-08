@@ -22,7 +22,7 @@ class Student extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'email', 'phone'];
+    protected $fillable = ['name', 'personuid', 'level', 'join_date', 'leave_at'];
 
     /**
      * @return BelongsToMany
@@ -54,5 +54,21 @@ class Student extends Model
     public function absent_count(): int
     {
         return $this->belongsToMany(Attendance::class)->wherePivot('status', 0)->count();
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function phones(): HasMany
+    {
+        return $this->hasMany(Phone::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function exceptions(): HasMany
+    {
+        return $this->hasMany(Exception::class);
     }
 }

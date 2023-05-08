@@ -20,16 +20,24 @@ class Subject extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'description', 'class_id', 'teacher_id'];
 
     protected $dates = ['created_at'];
 
     /**
      * @return BelongsTo
      */
+    public function classes(): BelongsTo
+    {
+        return $this->BelongsTo(Classe::class);//->withPivot('status');
+    }
+
+    /**
+     * @return BelongsTo
+     */
     public function teacher(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Teacher::class);
     }
 
     /**
@@ -42,10 +50,10 @@ class Subject extends Model
     }
 
     /**
-     * @return HasMany
+     * @return BelongsToMany
      */
-    public function attendances(): HasMany
+    public function attendances(): BelongsToMany
     {
-        return $this->hasMany(Attendance::class);
+        return $this->BelongsToMany(Attendance::class)->withTimestamps();
     }
 }

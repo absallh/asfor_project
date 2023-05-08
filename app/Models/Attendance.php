@@ -17,16 +17,16 @@ class Attendance extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['subject_id', 'user_id', 'date'];
+    protected $fillable = ['subject_id', 'student_id', 'date'];
 
     protected $dates = ['date', 'created_at'];
 
     /**
-     * @return BelongsToMany
+     * @return BelongsTo
      */
-    public function students(): BelongsToMany
+    public function students(): BelongsTo
     {
-        return $this->belongsToMany(Student::class, 'attendance_student', 'attendance_id','student_id')->withPivot('status');
+        return $this->belongsTo(Student::class, 'student_id');//->withPivot('status');
     }
 
     /**
@@ -40,10 +40,12 @@ class Attendance extends Model
     /**
      * @return BelongsTo
      */
-    public function teacher(): BelongsTo
+    /*public function teacher(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+*/
+
 
     //scopes --------------------------------------------------
     public function scopeWhereSubject($query, $search)
