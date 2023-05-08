@@ -17,6 +17,7 @@ class CreateSubjectStudentTable extends Migration
             $table->id();
             $table->foreignId('subject_id')->constrained('subjects')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('student_id')->constrained('students')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->date('join_date');
             $table->timestamps();
             $table->unique(['subject_id', 'student_id']);
         });

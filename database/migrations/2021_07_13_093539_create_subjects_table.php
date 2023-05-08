@@ -16,6 +16,7 @@ class CreateSubjectsTable extends Migration
             $table->string('name')->unique();
             $table->text('description')->nullable();
             $table->foreignId('teacher_id')->constrained('teachers')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('class_id')->constrained('classes')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
