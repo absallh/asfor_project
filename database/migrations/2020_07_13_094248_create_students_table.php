@@ -19,7 +19,7 @@ class CreateStudentsTable extends Migration
             //$table->string('email');
             //$table->string('phone');
             $table->string('personuid')->unique();
-            $table->string('level');
+            //$table->string('level');
             $table->date('join_date');
             $table->date('leave_at')->nullable();
             $table->timestamps();

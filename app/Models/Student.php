@@ -22,14 +22,15 @@ class Student extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'personuid', 'level', 'join_date', 'leave_at'];
+    protected $fillable = ['name', 'personuid', 'join_date', 'leave_at'];
+    protected $dates = ['join_date', 'leave_at'];
 
     /**
      * @return BelongsToMany
      */
     public function subjects(): BelongsToMany
     {
-        return $this->belongsToMany(Subject::class, 'subject_student', 'student_id', 'subject_id')->withTimestamps();
+        return $this->belongsToMany(Subject::class, 'subject_student')->withTimestamps();
     }
 
     /**

@@ -25,8 +25,8 @@ class StoreStudentRequest extends FormRequest
     {
         return [
             'name' => ['required', 'min:6', 'max:255'],
-            'email' => ['required', 'email', 'unique:students', 'max:255'],
-            'phone' => ['required', 'min:6'],
+            'personuid' => ['required', 'unique:students', 'min:14', 'max:255'],
+            'join_date' => ['date']
         ];
     }
 }

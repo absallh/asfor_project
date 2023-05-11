@@ -30,8 +30,9 @@ class UpdateStudentRequest extends FormRequest
     {
         return [
             'name' => ['required', 'min:6', 'max:255'],
-            'email' => ['required', 'email', Rule::unique('students')->ignore($this->student->id), 'max:255'],
-            'phone' => ['required', 'min:6'],
+            'personuid' => [Rule::unique('students')->ignore($this->student->id), 'max:255'],
+            'join_date' => ['date'],
+            //'leave_at' => ['date']
         ];
     }
 }

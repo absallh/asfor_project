@@ -27,10 +27,10 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="email">Email*</label>
-                                    <input type="email" id="email" class="form-control email radius @error('email') is-invalid @enderror"
-                                           value="{{ old('email') }}" name="email" placeholder="Try john@attendance.com" required>
-                                    @error('email')
+                                    <label class="form-control-label" for="personuid">National Id*</label>
+                                    <input type="text" id="personuid" class="form-control personuid radius @error('personuid') is-invalid @enderror"
+                                           value="{{ old('personuid') }}" name="personuid" placeholder="Try john@attendance.com" required>
+                                    @error('personuid')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -39,10 +39,9 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="phone">Phone number*</label>
-                                    <input type="text" id="phone" class="form-control phone radius @error('phone') is-invalid @enderror"
-                                           value="{{ old('phone') }}" name="phone" placeholder="Try +961 01 123456" required>
-                                    @error('phone')
+                                    <label class="form-control-label" for="join_date">Join Date</label>
+                                    <input class="form-control datepicker  @error('join_date') is-invalid @enderror " name="join_date" id="input-date" placeholder="Select join date" type="text" value="{{ \Carbon\Carbon::today()->format('m/d/Y') }}">
+                                    @error('join_date')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

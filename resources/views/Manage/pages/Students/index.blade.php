@@ -44,8 +44,9 @@
                                 <thead class="thead-light">
                                 <tr>
                                     <th scope="col" class="sort" data-sort="employee">Name</th>
-                                    <th scope="col" class="sort" data-sort="employee">Email</th>
-                                    <th scope="col" class="sort" data-sort="service">Phone</th>
+                                    <th scope="col" class="sort" data-sort="employee">National Id</th>
+                                    <th scope="col" class="sort" data-sort="service">join date</th>
+                                    <th scope="col" class="sort" data-sort="service">leave date</th>
                                     <th scope="col" class="sort" data-sort="action">Action</th>
                                 </tr>
                                 </thead>
@@ -55,11 +56,14 @@
                                         <td class="text-capitalize">
                                             {{ $student->name }}
                                         </td>
-                                        <td class="text-capitalize">
-                                            {{ $student->email }}
+                                        <td class="text-md">
+                                            {{ $student->personuid }}
                                         </td>
                                         <td class="text-md">
-                                            {{ $student->phone }}
+                                            {{ $student->join_date->format('d/m/Y') }}
+                                        </td>
+                                        <td class="text-md">
+                                            {{ $student->leave_at }}
                                         </td>
                                         <td>
                                             <button data-toggle="modal" data-target="#updateStudent-{{ $student->id }}" class="btn btn-sm bg-green-500 text-white m-0 radius" title="edit">
