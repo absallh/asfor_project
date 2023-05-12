@@ -1,8 +1,10 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-class CreateSubjectsTable extends Migration
+
+class CreateEmployees extends Migration
 {
     /**
      * Run the migrations.
@@ -11,16 +13,18 @@ class CreateSubjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('subjects', function (Blueprint $table) {
+        Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('level');
-            $table->text('description')->nullable();
-            $table->foreignId('employee_id')->constrained('employees')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('class_id')->constrained('classes')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->enum('gender', ['m', 'f'])->default('m');
+            $table->string('emp_type')->default('Teacher');
+            $table->double('salary')->nullable();
+            $table->double('shift_hours')->nullable();
+            $table->date('join_date');
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -28,6 +32,6 @@ class CreateSubjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subjects');
+        Schema::dropIfExists('employees');
     }
 }

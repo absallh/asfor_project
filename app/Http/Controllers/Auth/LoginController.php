@@ -35,7 +35,7 @@ class LoginController extends Controller
         if (Auth::user()->role == 'Admin') {
             return '/manage/dashboard';
         } else {
-            return RouteServiceProvider::HOME;
+            return '/show/search';
         }
     }
 

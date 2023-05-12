@@ -72,4 +72,12 @@ class Student extends Model
     {
         return $this->hasMany(Exception::class);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function student_vications(): HasMany
+    {
+        return $this->hasMany(Student_Vication::class);
+    }
 }

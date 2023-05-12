@@ -1,8 +1,10 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-class CreateSubjectsTable extends Migration
+
+class StudentVication extends Migration
 {
     /**
      * Run the migrations.
@@ -11,16 +13,16 @@ class CreateSubjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('subjects', function (Blueprint $table) {
+        Schema::create('student_vication', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('level');
-            $table->text('description')->nullable();
+            $table->foreignId('student_id')->constrained('students')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('employee_id')->constrained('employees')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('class_id')->constrained('classes')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('vication_id')->constrained('vications')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
+            $table->unique(['vication_id', 'student_id']);
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -28,6 +30,6 @@ class CreateSubjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subjects');
+        Schema::dropIfExists('student_vication');
     }
 }
