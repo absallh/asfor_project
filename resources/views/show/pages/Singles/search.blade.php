@@ -39,19 +39,19 @@
                                 </div>
                             </div>
                             <div class="card-body radius shadow-2xl">
-                                <form method="post" action="{{ route('attendance.store') }}">
+                                <form method="post" action="{{ route('search') }}">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="form-control-label" for="subject">Select Subject*</label>
-                                                <select id="subject" name="subject_id"  class="form-control radius">
+                                                <select id="subject" name="model_name"  class="form-control radius">
                                                     <option value="Student">Student</option>
-                                                    <option value="Teacher">Teacher</option>
-                                                    <option value="Class">Class</option>
+                                                    <option value="Employee">Teacher</option>
+                                                    <option value="Classe">Class</option>
                                                     <option value="Subject">Subject</option>
                                                 </select>
-                                                @error('subject_id')
+                                                @error('model_name')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>

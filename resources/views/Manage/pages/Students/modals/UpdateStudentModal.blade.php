@@ -30,7 +30,7 @@
                                 <div class="form-group">
                                     <label class="form-control-label" for="First Name">First Name*</label>
                                     <input type="text" id="first_name" class="form-control name radius @error('first_name') is-invalid @enderror"
-                                           value="{{ $student->first_name }}" name="first_name" placeholder="Try John" required>
+                                           value="{{ $student->first_name }}" name="first_name" placeholder="Try John">
                                     @error('first_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

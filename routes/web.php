@@ -54,30 +54,7 @@ Route::group(['middleware' => 'role:Admin','namespace' => 'Manage', 'prefix' => 
 
 
 Route::group(['middleware' => 'role:User','namespace' => 'show', 'prefix' => 'show'], function () {
-
     Route::get('/search', 'ShowController@index')->name('search');
-
-    // Student Resources
-    //Route::resource('/student', 'StudentController')->except('create', 'edit');
-
-    // Go to assign students page for the class
-    //Route::get('/subject/{subject}/assign', 'SubjectController@assignStudents')->name('subject.assign-student');
-    // Store the assigned student to the database
-    //Route::post('/subject/{subject}/attach', 'SubjectController@attachAssignedStudents')->name('subject.attach-student');
-    // Store the assigned student to the database
-    //Route::delete('/subject/{subject}/detach/{student}', 'SubjectController@detachAssignedStudent')->name('subject.remove.student');
-    // Subject Resources
-    //Route::resource('/subject', 'SubjectController')->except('create', 'edit');
-
-    // Attach students Attendance records
-    //Route::post('attendance/attach/{attendance}', 'AttendanceController@attachStudents')->name('attendance.attach');
-    // Edit students Attendance records
-    //Route::put('attendance/attach/{attendance}/update', 'AttendanceController@updateAttendanceData')->name('attendance.student.update');
-    // Attendance Resources
-    //Route::resource('attendance', 'AttendanceController');
-
-    // Settings
-    //Route::get('/settings', 'SettingController@index')->name('settings.index');
-    //Route::post('/settings', 'SettingController@update')->name('settings.update');
+    Route::post('/search', 'ShowController@search')->name('search');
 });
 

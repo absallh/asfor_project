@@ -36,10 +36,10 @@ class Student extends Model
     /**
      * @return BelongsToMany
      */
-    // public function attendances(): BelongsToMany
-    // {
-    //     return $this->belongsToMany(Attendance::class)->withPivot('status');
-    // }
+    public function attendances(): BelongsToMany
+    {
+        return $this->belongsToMany(Attendance::class)->withPivot('status');
+    }
 
     /**
      * @return int

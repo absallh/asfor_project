@@ -17,7 +17,7 @@
                                                 class="fas fa-home"></i></a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="{{ route('student.index') }}">Students</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">{{ $student->name }}</li>
+                                    <li class="breadcrumb-item active" aria-current="page"></li>
                                 </ol>
                             </nav>
                         </div>
@@ -34,10 +34,10 @@
                             <img src="{{ asset(Config::get('settings.site_logo')) }}" onerror="this.onerror=null;this.src='https://picsum.photos/200';"
                                  class="rounded-circle img-center img-fluid shadow shadow-lg--hover"
                                  style="width: 140px;" alt="">
-                            <h1 class="mt-4">{{ $student->name }}</h1>
+                            <h1 class="mt-4"></h1>
                             <blockquote class="blockquote mb-0">
-                                <p class="mb-0">{{ $student->email }}</p>
-                                <p class="mb-0 text-bold"><a href="tel:{{ $student->phone }}">{{ $student->phone }}</a> </p>
+                                <p class="mb-0"></p>
+                                <p class="mb-0 text-bold"><a href="tel:"></a> </p>
 
                             </blockquote>
                         </div>
@@ -51,7 +51,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h5 class="card-title text-uppercase text-white mb-0">Total Courses</h5>
-                                    <span class="h2 font-weight-bold text-white mb-0">{{ $student->subjects->count() }}</span>
+                                    <span class="h2 font-weight-bold text-white mb-0"></span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-red text-white rounded-circle shadow">
@@ -69,7 +69,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <h5 class="card-title text-uppercase text-white mb-0">Total Attendance</h5>
-                                            <span class="h2 font-weight-bold text-white mb-0">{{ $student->present_count() }}</span>
+                                            <span class="h2 font-weight-bold text-white mb-0"></span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="icon icon-shape bg-red text-white rounded-circle shadow">
@@ -87,7 +87,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <h5 class="card-title text-uppercase text-white mb-0">Total Absence</h5>
-                                            <span class="h2 font-weight-bold text-white mb-0">{{ $student->absent_count() }}</span>
+                                            <span class="h2 font-weight-bold text-white mb-0"></span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="icon icon-shape bg-red text-white rounded-circle shadow">
@@ -124,30 +124,30 @@
                                 </tr>
                                 </thead>
                                 <tbody class="list">
-                                @foreach ($student->subjects as $subject)
+                               
                                     <tr>
                                         <td class="text-capitalize">
                                             <span class="badge badge-primary text-lg rounded-circle">
-                                                {{ $loop->iteration }}
+                                                
                                             </span>
                                         </td>
                                         <td class="text-capitalize">
-                                            {{ $subject->name }}
+                                            
                                         </td>
                                         <td>
-                                            <button data-toggle="modal" data-target="#updateSubject-{{ $subject->id }}" class="btn btn-sm bg-green-500 text-white m-0 radius" title="edit">
+                                            <button data-toggle="modal" data-target="#updateSubject-" class="btn btn-sm bg-green-500 text-white m-0 radius" title="edit">
                                                 <i class="fas fa-edit" aria-hidden="true"></i>
                                             </button>
                                             <!-- Update Class Modal -->
-                                        @include('Manage.pages.Subject.modals.UpdateSubjectModal', ['subject' => $subject])
+                                        
                                         <!--/ Update Class Modal -->
-                                            <a href="{{ route('subject.show', $subject) }}" class="btn btn-sm bg-blue-500 text-white m-0 radius" title="edit">
+                                            <a href="" class="btn btn-sm bg-blue-500 text-white m-0 radius" title="edit">
                                                 <i class="fas fa-eye" aria-hidden="true"></i>
                                             </a>
-                                            <a href="{{ route('subject.assign-student', $subject) }}" class="btn btn-sm bg-yellow-500 text-white m-0 radius" title="Assign Students">
+                                            <a href="" class="btn btn-sm bg-yellow-500 text-white m-0 radius" title="Assign Students">
                                                 <i class="fas fa-users-class" aria-hidden="true"></i>
                                             </a>
-                                            <form action="{{ route('subject.destroy', $subject) }}" class="d-inline" method="post">
+                                            <form action="" class="d-inline" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button onclick="return confirm('Are you sure? this action will remove all assigned students too')" type="submit" class="btn btn-sm bg-red-500 text-white radius" title="delete">
@@ -156,7 +156,7 @@
                                             </form>
                                         </td>
                                     </tr>
-                                @endforeach
+                               
                                 </tbody>
                             </table>
                         </div>

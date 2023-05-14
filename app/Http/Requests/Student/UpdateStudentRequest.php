@@ -32,16 +32,16 @@ class UpdateStudentRequest extends FormRequest
             //'id' => ['required', Rule::unique('students')->ignore($this->student->id)],
             'first_name' => ['required', 'max:255'],
             'father_name' => ['required', 'min:6', 'max:255'],
-            'mother_name' => ['min:6', 'max:255'],
-            'address' => ['min:6'],
-            'personuid' => [Rule::unique('students')->ignore($this->student->id), 'max:14', 'min:6'],
-            'apply_date' => ['date'],
-            'call_date' => ['date'],
-            'call_ruslt' => ['max:255'],
-            'test_date' => ['date'],
+            'mother_name' => ['nullable','min:6', 'max:255'],
+            'address' => ['nullable', 'min:6'],
+            'personuid' => ['required', Rule::unique('students')->ignore($this->student->id), 'max:14', 'min:14'],
+            'apply_date' => ['nullable', 'date'],
+            'call_date' => ['nullable', 'date'],
+            'call_ruslt' => ['nullable', 'max:255'],
+            'test_date' => ['nullable', 'date'],
             'test_ruslt' => ['max:255'],
-            'join_date' => ['date'],
-            'leave_at' => ['date']
+            'join_date' => ['nullable', 'date'],
+            'leave_at' => ['nullable', 'date']
         ];
     }
 }

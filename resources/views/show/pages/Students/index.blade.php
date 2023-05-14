@@ -51,16 +51,16 @@
                                 </tr>
                                 </thead>
                                 <tbody class="list">
-                                @foreach ($students as $student)
+                                @foreach ($result as $student)
                                     <tr>
                                         <td class="text-capitalize">
-                                            {{ $student->name }}
+                                            {{ $student->first_name }} {{ $student->father_name }}
                                         </td>
                                         <td class="text-md">
                                             {{ $student->personuid }}
                                         </td>
                                         <td class="text-md">
-                                            {{ $student->join_date->format('d/m/Y') }}
+                                            {{ $student->join_date }}
                                         </td>
                                         <td class="text-md">
                                             {{ $student->leave_at }}
