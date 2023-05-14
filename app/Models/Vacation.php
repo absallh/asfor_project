@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Vication extends Model
+class Vacation extends Model
 {
     use HasFactory;
 
@@ -16,8 +16,8 @@ class Vication extends Model
     /**
      * @return HasMany
      */
-    public function student_vications(): HasMany
+    public function student_vacations(): HasMany
     {
-        return $this->hasMany(Student_Vication::class);
+        return $this->hasMany(Student_Vacation::class);
     }
 }

@@ -24,9 +24,13 @@ class StoreStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'min:6', 'max:255'],
-            'personuid' => ['required', 'unique:students', 'min:14', 'max:255'],
-            'join_date' => ['date']
+            'first_name' => ['required', 'max:255'],
+            'father_name' => ['required', 'min:6', 'max:255'],
+            'mother_name' => ['max:255'],
+            'address' => ['max:255'],
+            'personuid' => ['required', 'unique:students', 'min:14', 'max:14'],
+            'apply_date' => ['date'],
+            //'join_date' => ['date']
         ];
     }
 }

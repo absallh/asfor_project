@@ -31,7 +31,7 @@ class StudentController extends BaseController
     public function show(Student $student){
         $this->setPageTitle($student->name, 'Show student');
         $student->load('attendances');
-        return view('Manage.pages.Students.show', compact('student'));
+    return view('Manage.pages.Students.show'/*, compact('student')*/);
     }
 
     /**
@@ -59,6 +59,7 @@ class StudentController extends BaseController
      */
     public function update(UpdateStudentRequest $request, Student $student): RedirectResponse
     {
+        dd($request);
         try {
             $student->update($request->validated());
         }

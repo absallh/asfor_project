@@ -43,27 +43,35 @@
                             <table class="table align-items-center table-flush datatable-buttons">
                                 <thead class="thead-light">
                                 <tr>
-                                    <th scope="col" class="sort" data-sort="employee">Name</th>
+                                    <th scope="col" class="sort" data-sort="employee">#</th>
                                     <th scope="col" class="sort" data-sort="employee">National Id</th>
-                                    <th scope="col" class="sort" data-sort="service">join date</th>
-                                    <th scope="col" class="sort" data-sort="service">leave date</th>
-                                    <th scope="col" class="sort" data-sort="action">Action</th>
+                                    <th scope="col" class="sort" data-sort="employee">Name</th>
+                                    <th scope="col" class="sort" data-sort="employee">Mother Name</th>
+                                    <th scope="col" class="sort" data-sort="service">Address</th>
+                                    <th scope="col" class="sort" data-sort="service">Join date</th>
+                                    <th scope="col" data-sort="action">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody class="list">
                                 @foreach ($students as $student)
                                     <tr>
-                                        <td class="text-capitalize">
-                                            {{ $student->name }}
+                                        <td class="text-md">
+                                            {{ $student->id }}
                                         </td>
                                         <td class="text-md">
                                             {{ $student->personuid }}
                                         </td>
-                                        <td class="text-md">
-                                            {{ $student->join_date->format('d/m/Y') }}
+                                        <td class="text-capitalize">
+                                            {{ $student->first_name }} {{ $student->father_name }}
+                                        </td>
+                                        <td class="text-capitalize">
+                                            {{ $student->mother_name }}
+                                        </td>
+                                        <td class="text-capitalize">
+                                            {{ $student->address }}
                                         </td>
                                         <td class="text-md">
-                                            {{ $student->leave_at }}
+                                            {{ $student->join_date }}
                                         </td>
                                         <td>
                                             <button data-toggle="modal" data-target="#updateStudent-{{ $student->id }}" class="btn btn-sm bg-green-500 text-white m-0 radius" title="edit">

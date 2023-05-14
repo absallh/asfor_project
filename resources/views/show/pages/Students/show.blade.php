@@ -17,7 +17,7 @@
                                                 class="fas fa-home"></i></a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="{{ route('student.index') }}">Students</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">{{ $student->name }}</li>
+                                    <li class="breadcrumb-item active" aria-current="page">{{ $student->first_name }}</li>
                                 </ol>
                             </nav>
                         </div>
@@ -34,10 +34,10 @@
                             <img src="{{ asset(Config::get('settings.site_logo')) }}" onerror="this.onerror=null;this.src='https://picsum.photos/200';"
                                  class="rounded-circle img-center img-fluid shadow shadow-lg--hover"
                                  style="width: 140px;" alt="">
-                            <h1 class="mt-4">{{ $student->name }}</h1>
+                            <h1 class="mt-4">{{ $student->first_name }}</h1>
                             <blockquote class="blockquote mb-0">
-                                <p class="mb-0">{{ $student->email }}</p>
-                                <p class="mb-0 text-bold"><a href="tel:{{ $student->phone }}">{{ $student->phone }}</a> </p>
+                                <p class="mb-0">{{ $student->father_name }}</p>
+                                <p class="mb-0 text-bold"><a href="tel:{{ $student->personuid }}">{{ $student->personuid }}</a> </p>
 
                             </blockquote>
                         </div>
@@ -51,7 +51,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h5 class="card-title text-uppercase text-white mb-0">Total Courses</h5>
-                                    <span class="h2 font-weight-bold text-white mb-0">{{ $student->subjects->count() }}</span>
+                                    <span class="h2 font-weight-bold text-white mb-0"></span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-red text-white rounded-circle shadow">
@@ -69,7 +69,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <h5 class="card-title text-uppercase text-white mb-0">Total Attendance</h5>
-                                            <span class="h2 font-weight-bold text-white mb-0">{{ $student->present_count() }}</span>
+                                            <span class="h2 font-weight-bold text-white mb-0"></span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="icon icon-shape bg-red text-white rounded-circle shadow">
@@ -87,7 +87,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <h5 class="card-title text-uppercase text-white mb-0">Total Absence</h5>
-                                            <span class="h2 font-weight-bold text-white mb-0">{{ $student->absent_count() }}</span>
+                                            <span class="h2 font-weight-bold text-white mb-0"></span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="icon icon-shape bg-red text-white rounded-circle shadow">

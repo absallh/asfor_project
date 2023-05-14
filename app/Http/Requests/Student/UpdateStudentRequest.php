@@ -29,10 +29,19 @@ class UpdateStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'min:6', 'max:255'],
-            'personuid' => [Rule::unique('students')->ignore($this->student->id), 'max:255'],
+            //'id' => ['required', Rule::unique('students')->ignore($this->student->id)],
+            'first_name' => ['required', 'max:255'],
+            'father_name' => ['required', 'min:6', 'max:255'],
+            'mother_name' => ['min:6', 'max:255'],
+            'address' => ['min:6'],
+            'personuid' => [Rule::unique('students')->ignore($this->student->id), 'max:14', 'min:6'],
+            'apply_date' => ['date'],
+            'call_date' => ['date'],
+            'call_ruslt' => ['max:255'],
+            'test_date' => ['date'],
+            'test_ruslt' => ['max:255'],
             'join_date' => ['date'],
-            //'leave_at' => ['date']
+            'leave_at' => ['date']
         ];
     }
 }

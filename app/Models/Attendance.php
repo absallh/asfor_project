@@ -17,7 +17,7 @@ class Attendance extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['subject_id', 'student_id', 'date'];
+    protected $fillable = ['subject_id', 'student_id', 'date', 'created_at', 'status'];
 
     protected $dates = ['date', 'created_at'];
 
