@@ -1,8 +1,8 @@
-@extends('show.layouts.app')
+@extends('Manage.layouts.app')
 
 @section('content')
     <div class="main-content" id="panel">
-    @include('show.includes.header')
+    @include('Manage.includes.header')
         <!-- Header -->
         <div class="header bg-primary pb-6">
                 <div class="container-fluid">

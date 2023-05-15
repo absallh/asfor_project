@@ -22,7 +22,7 @@ class Student extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'first_name', 'father_name', 'mother_name', 'address', 'personuid', 'apply_date', 'call_date', 'call_ruslt', 'test_date', 'test_ruslt', 'join_date', 'leave_at'];
+    protected $fillable = ['id', 'first_name', 'father_name', 'full_name', 'mother_name', 'address', 'personuid', 'apply_date', 'call_date', 'call_ruslt', 'test_date', 'test_ruslt', 'join_date', 'leave_at'];
     protected $dates = ['apply_date', 'call_date', 'test_date', 'join_date', 'leave_at'];
 
     /**
@@ -62,7 +62,7 @@ class Student extends Model
      */
     public function phones(): HasMany
     {
-        return $this->hasMany(Phone::class);
+        return $this->hasMany(Phone::class, 'student_id');
     }
 
     /**

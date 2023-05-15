@@ -20,7 +20,7 @@ class ShowController extends BaseController
      */
     public function index(){
         $this->setPageTitle('Search', 'search');
-        return view('show.pages.Singles.search');
+        return view('Show.pages.Singles.search');
     }
 
     /**
@@ -37,10 +37,10 @@ class ShowController extends BaseController
         if ($req->model_name == 'Student'){
             $this->setPageTitle('Student Search', 'Student Search');
             $model = Student::class;
-            $result = $model::where('id','like',"%$req->search_key%")->get();
-            $viewName = 'show.pages.Students.index';
+            $students = $model::where('id','like',"%$req->search_key%")
+                                ->orWhere('full_name', 'like', "%$req->search_key%")->get();
+            return view('Manage.pages.Students.index', compact('students'));
         }
 
-        return view($viewName, compact('result'));
     }
 }

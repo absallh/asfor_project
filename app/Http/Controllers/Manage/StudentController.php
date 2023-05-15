@@ -30,8 +30,8 @@ class StudentController extends BaseController
      */
     public function show(Student $student){
         $this->setPageTitle($student->name, 'Show student');
-        $student->attendances();
-    return view('Manage.pages.Students.show'/*, compact('student')*/);
+        $student->load('phones');
+    return view('Manage.pages.Students.show', compact('student'));
     }
 
     /**

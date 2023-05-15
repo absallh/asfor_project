@@ -13,7 +13,7 @@ class SettingSeeder extends Seeder
     protected $settings = [
         [
             'key'                       =>  'site_name',
-            'value'                     =>  'Attendance System',
+            'value'                     =>  'Asfor System',
         ],
         [
             'key'                       =>  'dashboard_color',
@@ -21,11 +21,11 @@ class SettingSeeder extends Seeder
         ],
         [
             'key'                       =>  'site_logo',
-            'value'                     =>  '',
+            'value'                     =>  'uploads/settings/1225cfa8-ed8a-4c3a-828b-f2866bdd14e8.png',
         ],
         [
             'key'                       =>  'site_favicon',
-            'value'                     =>  '',
+            'value'                     =>  'uploads/settings/a0fef885-b225-4682-9a07-f61aca71bced.png',
         ],
         [
             'key'                       =>  'seo_meta_title',

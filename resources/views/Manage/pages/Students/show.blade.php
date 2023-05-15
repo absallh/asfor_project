@@ -17,7 +17,7 @@
                                                 class="fas fa-home"></i></a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="{{ route('student.index') }}">Students</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"></li>
+                                    <li class="breadcrumb-item active" aria-current="page">{{ $student->id }}</li>
                                 </ol>
                             </nav>
                         </div>
@@ -30,37 +30,20 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-body text-center bg-gray-100 radius shadow-2xl">
-                            <img src="{{ asset(Config::get('settings.site_logo')) }}" onerror="this.onerror=null;this.src='https://picsum.photos/200';"
-                                 class="rounded-circle img-center img-fluid shadow shadow-lg--hover"
-                                 style="width: 140px;" alt="">
-                            <h1 class="mt-4"></h1>
-                            <blockquote class="blockquote mb-0">
-                                <p class="mb-0"></p>
-                                <p class="mb-0 text-bold"><a href="tel:"></a> </p>
-
-                            </blockquote>
+                        <div class="card-body bg-gray-100 radius shadow-2xl">
+                            <h5 class="card-title text-uppercase mb-0">Student Name</h5>
+                            <span class="h2 font-weight-bold mb-0">{{ $student->full_name }}</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body bg-gray-100 radius shadow-2xl">
+                            <h5 class="card-title text-uppercase mb-0">Mother Name</h5>
+                            <span class="h2 font-weight-bold mb-0">{{ $student->mother_name }}</span>
                         </div>
                     </div>
                 </div>
                 <!-- Stats -->
                 <div class="col-md-6">
-                    <div class="card bg-gradient-default radius shadow-2xl">
-                        <!-- Card body -->
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <h5 class="card-title text-uppercase text-white mb-0">Total Courses</h5>
-                                    <span class="h2 font-weight-bold text-white mb-0"></span>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon icon-shape bg-red text-white rounded-circle shadow">
-                                        <i class="fas fa-book-open"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card bg-gradient-default radius shadow-2xl">
@@ -68,8 +51,8 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <h5 class="card-title text-uppercase text-white mb-0">Total Attendance</h5>
-                                            <span class="h2 font-weight-bold text-white mb-0"></span>
+                                            <h5 class="card-title text-uppercase text-white mb-0">Student#</h5>
+                                            <span class="h2 font-weight-bold text-white mb-0">{{ $student->id }}</span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="icon icon-shape bg-red text-white rounded-circle shadow">
@@ -86,8 +69,8 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <h5 class="card-title text-uppercase text-white mb-0">Total Absence</h5>
-                                            <span class="h2 font-weight-bold text-white mb-0"></span>
+                                            <h5 class="card-title text-uppercase text-white mb-0">Join Date</h5>
+                                            <span class="h2 font-weight-bold text-white mb-0">{{ $student->join_date }}</span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="icon icon-shape bg-red text-white rounded-circle shadow">
@@ -99,6 +82,105 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card bg-gradient-default radius shadow-2xl">
+                        <!-- Card body -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-white mb-0">National Id</h5>
+                                    <span class="h2 font-weight-bold text-white mb-0">{{ $student->personuid }}</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-red text-white rounded-circle shadow">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card bg-gradient-default radius shadow-2xl">
+                                <!-- Card body -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase text-white mb-0">Address</h5>
+                                            <span class="h2 font-weight-bold text-white mb-0">{{ $student->address }}</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape bg-red text-white rounded-circle shadow">
+                                                <i class="fas fa-calendar-check"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--phones-->
+        <div class="container-fluid mt-4">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Table -->
+                    <div class="card">
+                        <!-- Card header -->
+                        <div class="card-header border-0">
+                            <h3 class="mb-0">Phones</h3>
+                        </div>
+                        <!-- Light table -->
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush datatable-buttons">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th scope="col" class="sort" data-sort="number">#</th>
+                                    <th scope="col" class="sort" data-sort="subject">Subject</th>
+                                    <th scope="col" class="sort" data-sort="action">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody class="list">
+                                @foreach ($student->phones as $phone)
+                                    <tr>
+                                        <td class="text-capitalize">
+                                            <span class="badge badge-primary text-lg rounded-circle">
+                                                {{ $loop->iteration }}
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize">
+                                            {{$phone->phone}}
+                                        </td>
+                                        <td>
+                                            <button data-toggle="modal" data-target="#updateSubject-" class="btn btn-sm bg-green-500 text-white m-0 radius" title="edit">
+                                                <i class="fas fa-edit" aria-hidden="true"></i>
+                                            </button>
+                                            <!-- Update Class Modal -->
+                                        <!--/ Update Class Modal -->
+                                            <a href="" class="btn btn-sm bg-blue-500 text-white m-0 radius" title="edit">
+                                                <i class="fas fa-eye" aria-hidden="true"></i>
+                                            </a>
+                                            <a href="" class="btn btn-sm bg-yellow-500 text-white m-0 radius" title="Assign Students">
+                                                <i class="fas fa-users-class" aria-hidden="true"></i>
+                                            </a>
+                                            <form action="" class="d-inline" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button onclick="return confirm('Are you sure? this action will remove all assigned students too')" type="submit" class="btn btn-sm bg-red-500 text-white radius" title="delete">
+                                                    <i class="fas fa-trash" aria-hidden="true"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--/ Table -->
                 </div>
             </div>
         </div>
@@ -124,22 +206,18 @@
                                 </tr>
                                 </thead>
                                 <tbody class="list">
-                               
                                     <tr>
                                         <td class="text-capitalize">
                                             <span class="badge badge-primary text-lg rounded-circle">
-                                                
                                             </span>
                                         </td>
                                         <td class="text-capitalize">
-                                            
                                         </td>
                                         <td>
                                             <button data-toggle="modal" data-target="#updateSubject-" class="btn btn-sm bg-green-500 text-white m-0 radius" title="edit">
                                                 <i class="fas fa-edit" aria-hidden="true"></i>
                                             </button>
                                             <!-- Update Class Modal -->
-                                        
                                         <!--/ Update Class Modal -->
                                             <a href="" class="btn btn-sm bg-blue-500 text-white m-0 radius" title="edit">
                                                 <i class="fas fa-eye" aria-hidden="true"></i>
@@ -156,7 +234,6 @@
                                             </form>
                                         </td>
                                     </tr>
-                               
                                 </tbody>
                             </table>
                         </div>
