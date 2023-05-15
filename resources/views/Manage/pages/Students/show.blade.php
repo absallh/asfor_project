@@ -139,7 +139,8 @@
                                 <thead class="thead-light">
                                 <tr>
                                     <th scope="col" class="sort" data-sort="number">#</th>
-                                    <th scope="col" class="sort" data-sort="subject">Subject</th>
+                                    <th scope="col" class="sort" data-sort="subject">Phone</th>
+                                    <th scope="col" class="sort" data-sort="subject">Type</th>
                                     <th scope="col" class="sort" data-sort="action">Action</th>
                                 </tr>
                                 </thead>
@@ -153,6 +154,9 @@
                                         </td>
                                         <td class="text-capitalize">
                                             {{$phone->phone}}
+                                        </td>
+                                        <td class="text-capitalize">
+                                            {{$phone->type}}
                                         </td>
                                         <td>
                                             <button data-toggle="modal" data-target="#updateSubject-" class="btn btn-sm bg-green-500 text-white m-0 radius" title="edit">

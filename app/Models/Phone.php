@@ -12,7 +12,7 @@ class Phone extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['phone', 'student_id'];
+    protected $fillable = ['phone', 'student_id', 'type'];
 
     /**
      * @return BelongsTo
