@@ -17,7 +17,7 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('father_name');
-            $table->string('mother_name');
+            $table->string('mother_name')->nullable();
             $table->longText('full_name')->virtualAs( "CONCAT(first_name,' ',father_name)" );
             $table->longText('address')->nullable();
             //$table->string('email');

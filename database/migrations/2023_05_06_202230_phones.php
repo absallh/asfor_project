@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('type');
             $table->foreignId('student_id')->constrained('students')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
+            $table->unique(['phone', 'student_id']);
         });
     }
 

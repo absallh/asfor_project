@@ -75,7 +75,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-control-label" for="apply date">apply date</label>
-                                    <input class="form-control datepicker  @error('apply_date') is-invalid @enderror " name="apply_date" id="apply_date" placeholder="Select apply date" type="text" value="{{ \Carbon\Carbon::today()->format('m/d/Y') }}">
+                                    <input class="form-control datepicker  @error('apply_date') is-invalid @enderror " name="apply_date" id="apply_date" placeholder="Select apply date" type="text" value="">
                                     @error('apply_date')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

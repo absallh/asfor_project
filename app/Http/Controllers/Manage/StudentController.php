@@ -117,16 +117,17 @@ class StudentController extends BaseController
      */
     public function store(StoreStudentRequest $request): RedirectResponse
     {
+        $student = null;
         try {
-            Student::create($request->validated());
+            $student = Student::create($request->validated());
         }
-        catch (\Exception $exception){
+        catch (Exception $exception){
             alert('Oops', 'Please try again', 'error');
         }
         // Show Sweet Alert Notification
-        alert('Good Job', 'Student Created Successfully', 'success');
+        //alert('Good Job', 'Student Created Successfully', 'success');
         // Redirect Back
-        return redirect()->back();
+        return redirect()->route('student.addPhone', ['student'=>$student->id]);
     }
 
     /**

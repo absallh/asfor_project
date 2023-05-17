@@ -1,9 +1,9 @@
-@extends('Manage.layouts.app')
+@extends('Show.layouts.app')
 @section('content')
 <!-- Main content -->
 <div class="main-content" id="panel">
     <!-- Header -->
-    @include('Manage.includes.header')
+    @include('Show.includes.header')
     <!--/ Header -->
     <div class="header bg-primary pb-6">
         <div class="container-fluid">
@@ -43,7 +43,7 @@
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="phone">Phone</label>
                                                         <input type="tel" id="phone" class="form-control name radius @error('phone') is-invalid @enderror"
-                                                            value="" name="phone" placeholder="Enter Phone Number" maxlength="11" minlength="11">
+                                                            value="{{ $phone->phone }}" name="phone" placeholder="Enter Phone Number" maxlength="11" minlength="11">
                                                         @error('phone')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -56,7 +56,7 @@
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="type">Type</label>
                                                         <input type="text" id="type" class="form-control name radius @error('type') is-invalid @enderror"
-                                                            value="" name="type" placeholder="Enter Phone Type">
+                                                            value="{{ $phone->type }}" name="type" placeholder="Enter Phone Type">
                                                         @error('type')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -65,7 +65,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="btn btn-primary btn-lg btn-block radius">Add</button>
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block radius">Update</button>
                                         </form>
                                     </div>
                                 </div>

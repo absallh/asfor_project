@@ -63,6 +63,8 @@ Route::group(['middleware' => 'role:Admin','namespace' => 'Manage', 'prefix' => 
 
 
 Route::group(['middleware' => 'role:User','namespace' => 'show', 'prefix' => 'show'], function () {
+    Route::get('/student', 'StudentController@index')->name('student.index');
+    Route::get('/student/{student}', 'StudentController@show')->name('student.show');
     Route::get('/search', 'ShowController@index')->name('search');
     Route::post('/search', 'ShowController@search')->name('search');
 });

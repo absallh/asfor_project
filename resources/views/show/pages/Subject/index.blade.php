@@ -1,28 +1,28 @@
-@extends('Manage.layouts.app')
+@extends('Show.layouts.app')
 
 @section('content')
     <div class="main-content" id="panel">
-    @include('Manage.includes.header')
+    @include('Show.includes.header')
     <!-- Header -->
         <div class="header bg-primary">
             <div class="container-fluid">
                 <div class="header-body">
                     <div class="row align-items-center py-4">
                         <div class="col-lg-6 col-7">
-                            <h6 class="h2 text-white d-inline-block mb-0"> <a href="{{ route('dashboard') }}">Students</a></h6>
+                            <h6 class="h2 text-white d-inline-block mb-0"> <a href="{{ route('dashboard') }}">Attendance</a></h6>
                             <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark radius">
-                                    <li class="breadcrumb-item"><i class="fas fa-users-class"></i></li>
+                                    <li class="breadcrumb-item"><i class="fas fa-book-open"></i></li>
                                     <li class="breadcrumb-item active">{{ $pageTitle }}</li>
                                 </ol>
                             </nav>
                         </div>
                         <div class="col-lg-6 col-5 text-right">
-                            <button class="btn btn-sm btn-neutral"  data-toggle="modal" data-target="#createStudent"><i class="fas fa-plus mr-1"> </i> New</button>
+                            <button class="btn btn-sm btn-neutral"  data-toggle="modal" data-target="#createSubject"><i class="fas fa-plus mr-1"> </i> New</button>
                             <a href="{{ route('dashboard') }}" class="btn btn-sm btn-neutral"><i class="fa fa-home" aria-hidden="true"></i> </a>
-                            <!-- Create Student Modal -->
-                            @include('Manage.pages.Students.modals.CreateStudentModal')
-                            <!--/ Create Student Modal -->
+                            <!-- Create Class Modal -->
+                            @include('Show.pages.Subject.modals.CreateSubjectModal')
+                            <!--/ Create Class Modal -->
                         </div>
                     </div>
                 </div>
@@ -43,50 +43,41 @@
                             <table class="table align-items-center table-flush datatable-buttons">
                                 <thead class="thead-light">
                                 <tr>
-                                    <th scope="col" class="sort" data-sort="employee">#</th>
-                                    <th scope="col" class="sort" data-sort="employee">National Id</th>
-                                    <th scope="col" class="sort" data-sort="employee">Name</th>
-                                    <th scope="col" class="sort" data-sort="employee">Mother Name</th>
-                                    <th scope="col" class="sort" data-sort="service">Address</th>
-                                    <th scope="col" class="sort" data-sort="service">Join date</th>
-                                    <th scope="col" data-sort="action">Action</th>
+                                    <th scope="col" class="sort" data-sort="name">Name</th>
+                                    <th scope="col" class="sort" data-sort="teacher">Description</th>
+                                    <th scope="col" class="sort" data-sort="students">Students Number</th>
+                                    <th scope="col" class="sort" data-sort="action">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody class="list">
-                                @foreach ($students as $student)
+                                @foreach ($subjects as $subject)
                                     <tr>
-                                        <td class="text-md">
-                                            {{ $student->id }}
-                                        </td>
-                                        <td class="text-md">
-                                            {{ $student->personuid }}
+                                        <td class="text-capitalize">
+                                            {{ $subject->name }}
                                         </td>
                                         <td class="text-capitalize">
-                                            {{ $student->first_name }} {{ $student->father_name }}
+                                            {{ Str::limit($subject->description, 30, "...") }}
                                         </td>
                                         <td class="text-capitalize">
-                                            {{ $student->mother_name }}
-                                        </td>
-                                        <td class="text-capitalize">
-                                            {{ $student->address }}
-                                        </td>
-                                        <td class="text-md">
-                                            {{ $student->join_date }}
+                                            {{ $subject->students_count }}
                                         </td>
                                         <td>
-                                            <button data-toggle="modal" data-target="#updateStudent-{{ $student->id }}" class="btn btn-sm bg-green-500 text-white m-0 radius" title="edit">
+                                            <button data-toggle="modal" data-target="#updateSubject-{{ $subject->id }}" class="btn btn-sm bg-green-500 text-white m-0 radius" title="edit">
                                                 <i class="fas fa-edit" aria-hidden="true"></i>
                                             </button>
-                                            <!-- Update Student Modal -->
-                                            @include('Manage.pages.Students.modals.UpdateStudentModal', ['student' => $student])
-                                            <!--/ Update Student Modal -->
-                                            <a href="{{ route('student.show', $student) }}" class="btn btn-sm bg-blue-500 text-white m-0 radius" title="edit">
+                                            <!-- Update Class Modal -->
+                                            @include('Manage.pages.Subject.modals.UpdateSubjectModal', ['subject' => $subject])
+                                            <!--/ Update Class Modal -->
+                                            <a href="{{ route('subject.show', $subject) }}" class="btn btn-sm bg-blue-500 text-white m-0 radius" title="edit">
                                                 <i class="fas fa-eye" aria-hidden="true"></i>
                                             </a>
-                                            <form action="{{ route('student.destroy', $student) }}" class="d-inline" method="post">
+                                            <a href="{{ route('subject.assign-student', $subject) }}" class="btn btn-sm bg-yellow-500 text-white m-0 radius" title="Assign Students">
+                                                <i class="fas fa-users-class" aria-hidden="true"></i>
+                                            </a>
+                                            <form action="{{ route('subject.destroy', $subject) }}" class="d-inline" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-sm bg-red-500 text-white radius" title="delete">
+                                                <button onclick="return confirm('Are you sure? this action will remove all assigned students too')" type="submit" class="btn btn-sm bg-red-500 text-white radius" title="delete">
                                                     <i class="fas fa-trash" aria-hidden="true"></i>
                                                 </button>
                                             </form>
