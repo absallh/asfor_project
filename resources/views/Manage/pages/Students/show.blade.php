@@ -131,7 +131,19 @@
                     <div class="card">
                         <!-- Card header -->
                         <div class="card-header border-0">
-                            <h3 class="mb-0">Phones</h3>
+                            <div class="container-fluid">
+                                <div class="header-body">
+                                    <div class="row align-items-center py-4">
+                                        <div class="col-lg-6 col-7">
+                                            <h3 class="mb-0">Phones</h3>
+                                        </div>
+                                        <div class="col-lg-6 col-5 text-right">
+                                            <button onclick="location.href='{{ route('student.addPhone', $student) }}';" 
+                                            class="btn btn-sm btn-neutral"  data-toggle="modal" data-target="#createStudent"><i class="fas fa-plus mr-1"> </i> New</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <!-- Light table -->
                         <div class="table-responsive">
@@ -148,9 +160,7 @@
                                 @foreach ($student->phones as $phone)
                                     <tr>
                                         <td class="text-capitalize">
-                                            <span class="badge badge-primary text-lg rounded-circle">
-                                                {{ $loop->iteration }}
-                                            </span>
+                                            {{ $loop->iteration }}
                                         </td>
                                         <td class="text-capitalize">
                                             {{$phone->phone}}
@@ -159,21 +169,15 @@
                                             {{$phone->type}}
                                         </td>
                                         <td>
-                                            <button data-toggle="modal" data-target="#updateSubject-" class="btn btn-sm bg-green-500 text-white m-0 radius" title="edit">
+                                            <button onclick="location.href = '{{ route('student.phone.update', ['phone'=>$phone, 'student'=>$student->id]) }}';" class="btn btn-sm bg-green-500 text-white m-0 radius" title="edit">
                                                 <i class="fas fa-edit" aria-hidden="true"></i>
                                             </button>
                                             <!-- Update Class Modal -->
                                         <!--/ Update Class Modal -->
-                                            <a href="" class="btn btn-sm bg-blue-500 text-white m-0 radius" title="edit">
-                                                <i class="fas fa-eye" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="" class="btn btn-sm bg-yellow-500 text-white m-0 radius" title="Assign Students">
-                                                <i class="fas fa-users-class" aria-hidden="true"></i>
-                                            </a>
-                                            <form action="" class="d-inline" method="post">
+                                            <form action="{{ route('student.phone.destroy', ['phone'=>$phone, 'student'=>$student->id]) }}" class="d-inline" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button onclick="return confirm('Are you sure? this action will remove all assigned students too')" type="submit" class="btn btn-sm bg-red-500 text-white radius" title="delete">
+                                                <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-sm bg-red-500 text-white radius" title="delete">
                                                     <i class="fas fa-trash" aria-hidden="true"></i>
                                                 </button>
                                             </form>

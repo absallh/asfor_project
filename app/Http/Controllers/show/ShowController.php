@@ -36,8 +36,8 @@ class ShowController extends BaseController
         $model; $result; $viewName;
         if ($req->model_name == 'Student'){
             $this->setPageTitle('Student Search', 'Student Search');
-            $model = Student::class;
-            $students = $model::where('id','like',"%$req->search_key%")
+            $students = Student::class;
+            $students = $students::where('id','like',"%$req->search_key%")
                                 ->orWhere('full_name', 'like', "%$req->search_key%")->get();
             return view('Manage.pages.Students.index', compact('students'));
         }

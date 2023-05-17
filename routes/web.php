@@ -31,6 +31,15 @@ Route::group(['middleware' => 'role:Admin','namespace' => 'Manage', 'prefix' => 
     // Student Resources
     Route::resource('/student', 'StudentController')->except('create', 'edit');
 
+    // Go to student add phone page for the class
+    Route::get('/student/{student}/addPhone', 'StudentController@addPhone')->name('student.addPhone');
+    Route::post('/student/{student}/addPhone', 'StudentController@storePhone')->name('student.addPhone');
+    Route::get('/student/{student}/{phone}', 'StudentController@updatePhone')->name('student.phone.update');
+    Route::post('/student/{student}/{phone}', 'StudentController@editPhone')->name('student.phone.update');
+    Route::get('/student/{student}', 'StudentController@show')->name('student.show');
+    Route::delete('/student/{student}/{phone}', 'StudentController@destroyStudentPhone')->name('student.phone.destroy');
+    
+
     // Go to assign students page for the class
     Route::get('/subject/{subject}/assign', 'SubjectController@assignStudents')->name('subject.assign-student');
     // Store the assigned student to the database
