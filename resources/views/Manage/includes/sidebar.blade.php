@@ -34,6 +34,14 @@
                         </a>
                     </li>
                     <!-- End Students -->
+                    <!-- Add Classes -->
+                    <li class="nav-item">
+                        <a class="nav-link {{ (request()->is('manage/class*')) ? 'active' : '' }}" href="{{ route('class.index') }}">
+                            <i class="fas fa-book-open text-primary"></i>
+                            <span class="nav-link-text">Classes</span>
+                        </a>
+                    </li>
+                    <!-- End Classes -->
                     <!-- Add Courses -->
                     <li class="nav-item">
                         <a class="nav-link {{ (request()->is('manage/subject*')) ? 'active' : '' }}" href="{{ route('subject.index') }}">

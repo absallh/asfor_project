@@ -38,7 +38,10 @@ Route::group(['middleware' => 'role:Admin','namespace' => 'Manage', 'prefix' => 
     Route::post('/student/{student}/{phone}', 'StudentController@editPhone')->name('student.phone.update');
     Route::get('/student/{student}', 'StudentController@show')->name('student.show');
     Route::delete('/student/{student}/{phone}', 'StudentController@destroyStudentPhone')->name('student.phone.destroy');
-    
+
+    // Class Resources
+    Route::resource('/class', 'ClassController')->except('create', 'edit');
+    Route::get('/class/{classe}/assign', 'ClassController@assign_subject')->name('classe.assign-subject');
 
     // Go to assign students page for the class
     Route::get('/subject/{subject}/assign', 'SubjectController@assignStudents')->name('subject.assign-student');
@@ -63,8 +66,8 @@ Route::group(['middleware' => 'role:Admin','namespace' => 'Manage', 'prefix' => 
 
 
 Route::group(['middleware' => 'role:User','namespace' => 'show', 'prefix' => 'show'], function () {
-    Route::get('/student', 'StudentController@index')->name('student.index');
-    Route::get('/student/{student}', 'StudentController@show')->name('student.show');
+    Route::get('/student', 'StudentController@index')->name('show.student.index');
+    Route::get('/student/{student}', 'StudentController@show')->name('show.student.show');
     Route::get('/search', 'ShowController@index')->name('search');
     Route::post('/search', 'ShowController@search')->name('search');
 });

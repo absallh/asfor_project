@@ -28,7 +28,7 @@
                     <!-- Action -->
                     <!-- Add Students -->
                     <li class="nav-item">
-                        <a class="nav-link {{ (request()->is('show/student*')) ? 'active' : '' }}" href="{{ route('student.index') }}">
+                        <a class="nav-link {{ (request()->is('show/student*')) ? 'active' : '' }}" href="{{ route('show.student.index') }}">
                             <i class="fas fa-users-class text-primary"></i>
                             <span class="nav-link-text">Students</span>
                         </a>

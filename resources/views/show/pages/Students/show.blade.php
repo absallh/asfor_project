@@ -16,7 +16,7 @@
                                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i
                                                 class="fas fa-home"></i></a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="{{ route('student.index') }}">Students</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('show.student.index') }}">Students</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">{{ $student->id }}</li>
                                 </ol>
                             </nav>

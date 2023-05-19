@@ -70,7 +70,7 @@
                                             {{ $student->join_date }}
                                         </td>
                                         <td>
-                                            <a href="{{ route('student.show', $student) }}" class="btn btn-sm bg-blue-500 text-white m-0 radius" title="Show">
+                                            <a href="{{ route('show.student.show', $student) }}" class="btn btn-sm bg-blue-500 text-white m-0 radius" title="Show">
                                                 <i class="fas fa-eye" aria-hidden="true"></i>
                                             </a>
                                         </td>
