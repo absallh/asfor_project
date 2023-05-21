@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubjectStudentTable extends Migration
+class StudentVacation extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateSubjectStudentTable extends Migration
      */
     public function up()
     {
-        Schema::create('subject_student', function (Blueprint $table) {
+        Schema::create('student_vacation', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('subject_id')->constrained('subjects')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('student_id')->constrained('students')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->date('join_date');
-            $table->string('reason')->nullable();
-            $table->string('level')->nullable();
-            $table->date('leave_at')->nullable();
+            $table->foreignId('employee_id')->constrained('employees')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('vacation_id')->constrained('vacations')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
+            $table->unique(['vacation_id', 'student_id']);
         });
     }
 
@@ -32,6 +30,6 @@ class CreateSubjectStudentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('class_student');
+        Schema::dropIfExists('student_vacation');
     }
 }

@@ -59,22 +59,19 @@
                                         </td>
                                         
                                         <td>
+                                            <a href="{{ route('class.show', $classe) }}" class="btn btn-sm bg-blue-500 text-white m-0 radius" title="show">
+                                                <i class="fas fa-eye" aria-hidden="true"></i>
+                                            </a>
                                             <button data-toggle="modal" data-target="#updateSubject-{{ $classe->id }}" class="btn btn-sm bg-green-500 text-white m-0 radius" title="edit">
                                                 <i class="fas fa-edit" aria-hidden="true"></i>
                                             </button>
                                             <!-- Update Class Modal -->
                                             @include('Manage.pages.Class.modals.UpdateClassModal', ['classe' => $classe])
                                             <!--/ Update Class Modal -->
-                                            <a href="{{ route('class.show', $classe) }}" class="btn btn-sm bg-blue-500 text-white m-0 radius" title="edit">
-                                                <i class="fas fa-eye" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="{{ route('classe.assign-subject', $classe) }}" class="btn btn-sm bg-yellow-500 text-white m-0 radius" title="Assign Students">
-                                                <i class="fas fa-users-class" aria-hidden="true"></i>
-                                            </a>
                                             <form action="{{ route('class.destroy', ['class' => $classe]) }}" class="d-inline" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button onclick="return confirm('Are you sure? this action will remove all assigned students too')" type="submit" class="btn btn-sm bg-red-500 text-white radius" title="delete">
+                                                <button onclick="return confirm('Are you sure, this will delete all linked subjects too?')" type="submit" class="btn btn-sm bg-red-500 text-white radius" title="delete">
                                                     <i class="fas fa-trash" aria-hidden="true"></i>
                                                 </button>
                                             </form>

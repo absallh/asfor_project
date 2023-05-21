@@ -1,14 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Subject;
+namespace App\Http\Requests\Class;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-/**
- * @property mixed subject
- */
-class UpdateSubjectRequest extends FormRequest
+class StoreClassRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,10 +24,8 @@ class UpdateSubjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'max:255'],
-            'level' => ['nullable', 'string'],
-            'description' => ['nullable', 'string'],
-            'class_id' => ['required'],
+            'name' => ['required', 'unique:classes', 'max:255'],
+            'description' => ['nullable', 'max:255']
         ];
     }
 }

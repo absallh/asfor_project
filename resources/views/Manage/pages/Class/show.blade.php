@@ -43,7 +43,32 @@
                                             <th scope="col" class="sort" data-sort="action">Action</th>
                                         </tr>
                                         </thead>
-                                        
+                                        <tbody class="list">
+                                            @foreach ($class->subjects as $subject)
+                                                <tr>
+                                                    <td class="text-capitalize">
+                                                        {{$subject->name}}
+                                                    </td>
+                                                    <td class="text-capitalize">
+                                                        {{$subject->description}}
+                                                    </td>
+                                                    <td>
+                                                        <button onclick="location.href = '';" class="btn btn-sm bg-green-500 text-white m-0 radius" title="edit">
+                                                            <i class="fas fa-edit" aria-hidden="true"></i>
+                                                        </button>
+                                                        <!-- Update Class Modal -->
+                                                    <!--/ Update Class Modal -->
+                                                        <form action="" class="d-inline" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-sm bg-red-500 text-white radius" title="delete">
+                                                                <i class="fas fa-trash" aria-hidden="true"></i>
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
                                     </table>
                                 </div>
                             </div>

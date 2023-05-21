@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Vications extends Migration
+class CreateVacations extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class Vications extends Migration
      */
     public function up()
     {
-        Schema::create('vications', function (Blueprint $table) {
+        Schema::create('vacations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
@@ -21,6 +21,7 @@ class Vications extends Migration
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -28,6 +29,6 @@ class Vications extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vications');
+        Schema::dropIfExists('vacations');
     }
 }

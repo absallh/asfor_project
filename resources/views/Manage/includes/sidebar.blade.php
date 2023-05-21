@@ -46,7 +46,7 @@
                     <li class="nav-item">
                         <a class="nav-link {{ (request()->is('manage/subject*')) ? 'active' : '' }}" href="{{ route('subject.index') }}">
                             <i class="fas fa-book-open text-primary"></i>
-                            <span class="nav-link-text">Courses</span>
+                            <span class="nav-link-text">Subjects</span>
                         </a>
                     </li>
                     <!-- End Courses -->

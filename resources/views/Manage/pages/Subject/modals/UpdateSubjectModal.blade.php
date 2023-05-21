@@ -26,6 +26,36 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="class_id">Select Class*</label>
+                                    <select id="class_id" name="class_id"  class="form-control radius" required>
+                                        @foreach ($classes as $class)
+                                        <option value="{{$class->id}}">{{$class->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('model_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="level">Level</label>
+                                    <input type="text" id="level" class="form-control name radius @error('level') is-invalid @enderror"
+                                           value="{{ $subject->level }}" name="level" placeholder="Try Introduction to Java">
+                                    @error('level')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-control-label" for="description">Description</label>

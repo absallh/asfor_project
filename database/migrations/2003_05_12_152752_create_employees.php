@@ -20,7 +20,7 @@ class CreateEmployees extends Migration
             $table->string('emp_type')->default('Teacher');
             $table->double('salary')->nullable();
             $table->double('shift_hours')->nullable();
-            $table->date('join_date');
+            $table->date('join_date')->nullable();
             $table->timestamps();
         });
     }

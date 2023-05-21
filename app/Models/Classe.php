@@ -15,10 +15,10 @@ class Classe extends Model
     protected $fillable = ['id', 'name', 'description'];
 
     /**
-     * @return BelongsToMany
+     * @return HasMany
      */
-    public function subjects(): BelongsToMany
+    public function subjects(): HasMany
     {
-        return $this->belongsToMany(Subject::class)->withPivot('status');
+        return $this->hasMany(Subject::class, 'class_id');
     }
 }

@@ -43,6 +43,7 @@ Route::group(['middleware' => 'role:Admin','namespace' => 'Manage', 'prefix' => 
     // Class Resources
     Route::resource('/class', 'ClassController')->except('create', 'edit');
     Route::get('/class/{classe}/assign', 'ClassController@assign_subject')->name('classe.assign-subject');
+    Route::put('/class/{classe}', 'ClassController@update')->name('class.update');
 
     // Go to assign students page for the class
     Route::get('/subject/{subject}/assign', 'SubjectController@assignStudents')->name('subject.assign-student');

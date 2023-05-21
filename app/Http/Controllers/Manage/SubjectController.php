@@ -7,6 +7,7 @@ use App\Http\Requests\Subject\StoreSubjectRequest;
 use App\Http\Requests\Subject\UpdateSubjectRequest;
 use App\Models\Subject;
 use App\Models\Student;
+use App\Models\Classe;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -21,10 +22,10 @@ class SubjectController extends BaseController
      * @return Application|Factory|View
      */
     public function index(){
-        $this->setPageTitle('Courses', 'All Courses');
-        $users = User::all();
-        $subjects = Subject::withCount('students')->with('teacher')->get();
-        return view('Manage.pages.Subject.index', compact('subjects', 'users'));
+        $this->setPageTitle('Subjects', 'All Subjects');
+        $subjects = Subject::all();
+        $classes = Classe::all();
+        return view('Manage.pages.Subject.index', compact('subjects', 'classes'));
     }
 
     /**
@@ -80,10 +81,11 @@ class SubjectController extends BaseController
      */
     public function store(StoreSubjectRequest $request): RedirectResponse
     {
+        //dd($request);
         try {
             Subject::create($request->validated());
         }
-        catch (\Exception $exception){
+        catch (Exception $exception){
             alert('Oops', 'Please try again', 'error');
         }
         // Show Sweet Alert Notification

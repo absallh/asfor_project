@@ -34,13 +34,24 @@
                            <div class="card-header border-0">
                                <h3 class="mb-0">{{ $subTitle }}</h3>
                            </div>
+                           <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="join date">Join date</label>
+                                <input class="form-control datepicker  @error('join_date') is-invalid @enderror " name="join_date" id="join_date" placeholder="Select join date" type="text" value="{{ now()->format('m/d/Y') }}" required>
+                                @error('join_date')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
                            <!-- Assign Student Form -->
                            <div class="col-md-12">
                                <div class="form-group">
                                    <label class="form-control-label" for="students">Select Students*</label>
                                    <select id="students" name="students[]" multiple="multiple" class="form-control radius">
                                        @foreach($students as $student)
-                                           <option value="{{$student->id}}">{{$student->name}}</option>
+                                           <option value="{{$student->id}}">{{$student->id}}:{{$student->full_name}}</option>
                                        @endforeach
                                    </select>
                                    @error('students')

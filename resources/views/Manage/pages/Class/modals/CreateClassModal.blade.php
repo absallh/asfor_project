@@ -3,15 +3,14 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create new Course</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Create new Class</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="{{ route('subject.store') }}">
+            <form method="post" action="{{ route('class.store') }}">
                 <div class="modal-body text-left">
                         @csrf
-                        <h6 class="heading-small text-muted mb-4">Course information</h6>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">

@@ -43,9 +43,10 @@
                             <table class="table align-items-center table-flush datatable-buttons">
                                 <thead class="thead-light">
                                 <tr>
+                                    <th scope="col" class="sort" data-sort="students">Class id</th>
                                     <th scope="col" class="sort" data-sort="name">Name</th>
+                                    <th scope="col" class="sort" data-sort="teacher">Level</th>
                                     <th scope="col" class="sort" data-sort="teacher">Description</th>
-                                    <th scope="col" class="sort" data-sort="students">Students Number</th>
                                     <th scope="col" class="sort" data-sort="action">Action</th>
                                 </tr>
                                 </thead>
@@ -53,13 +54,16 @@
                                 @foreach ($subjects as $subject)
                                     <tr>
                                         <td class="text-capitalize">
+                                            {{ $subject->class_id }}
+                                        </td>
+                                        <td class="text-capitalize">
                                             {{ $subject->name }}
                                         </td>
                                         <td class="text-capitalize">
-                                            {{ Str::limit($subject->description, 30, "...") }}
+                                            {{ $subject->level }}
                                         </td>
                                         <td class="text-capitalize">
-                                            {{ $subject->students_count }}
+                                            {{ Str::limit($subject->description, 30, "...") }}
                                         </td>
                                         <td>
                                             <button data-toggle="modal" data-target="#updateSubject-{{ $subject->id }}" class="btn btn-sm bg-green-500 text-white m-0 radius" title="edit">

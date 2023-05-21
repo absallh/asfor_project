@@ -20,14 +20,14 @@ class Subject extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'class_id', 'teacher_id'];
+    protected $fillable = ['id', 'name', 'level', 'description', 'class_id'];
 
     protected $dates = ['created_at'];
 
     /**
      * @return BelongsTo
      */
-    public function classes(): BelongsTo
+    public function classe(): BelongsTo
     {
         return $this->BelongsTo(Classe::class);//->withPivot('status');
     }

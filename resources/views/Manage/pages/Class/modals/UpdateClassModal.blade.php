@@ -8,11 +8,10 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="{{ route('subject.update', $classe) }}">
+            <form method="post" action="{{ route('class.update', ['classe'=>$classe]) }}">
                 <div class="modal-body text-left">
                     @csrf
                     @method('PUT')
-                        <h6 class="heading-small text-muted mb-4">Course information</h6>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">

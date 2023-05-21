@@ -14,9 +14,9 @@ class CreateSubjectsTable extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('level');
+            $table->string('level')->nullable();
             $table->text('description')->nullable();
-            $table->foreignId('employee_id')->constrained('employees')->cascadeOnDelete()->cascadeOnUpdate();
+            //$table->foreignId('employee_id')->constrained('employees')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('class_id')->constrained('classes')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });

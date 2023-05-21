@@ -10,13 +10,13 @@
             <div class="header-body">
                 <div class="row align-items-center py-4">
                     <div class="col-lg-6 col-7">
-                        <h6 class="h2 text-white d-inline-block mb-0">Add Phone</h6>
+                        <h6 class="h2 text-white d-inline-block mb-0">Update Phone</h6>
                         <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i
                                             class="fas fa-home"></i></a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="">Add Phone</a></li>
+                                <li class="breadcrumb-item"><a href="">Update Phone</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">{{$student->id}}</li>
                             </ol>
                         </nav>
