@@ -135,9 +135,9 @@ class StudentController extends BaseController
      * @param Student $student
      * @return RedirectResponse
      */
-    public function update(UpdateStudentRequest $request, Student $student): RedirectResponse
+    public function update(UpdateStudentRequest $request, Student $student)
     {
-        //dd($request);
+        // dd($request);
         try {
             //$request->all();
             $student->update($request->all());

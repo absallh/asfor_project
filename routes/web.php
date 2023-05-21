@@ -37,6 +37,7 @@ Route::group(['middleware' => 'role:Admin','namespace' => 'Manage', 'prefix' => 
     Route::get('/student/{student}/{phone}', 'StudentController@updatePhone')->name('student.phone.update');
     Route::post('/student/{student}/{phone}', 'StudentController@editPhone')->name('student.phone.update');
     Route::get('/student/{student}', 'StudentController@show')->name('student.show');
+
     Route::delete('/student/{student}/{phone}', 'StudentController@destroyStudentPhone')->name('student.phone.destroy');
 
     // Class Resources

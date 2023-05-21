@@ -18,7 +18,7 @@
                                 <div class="form-group">
                                     <label class="form-control-label" for="nationalid">National Id*</label>
                                     <input type="text" id="nationalid" class="form-control email radius @error('personuid') is-invalid @enderror"
-                                           value="{{ $student->personuid }}" name="nationalid" placeholder="Try john@attendance.com" required>
+                                           value="{{ $student->personuid }}" name="personuid" placeholder="Try john@attendance.com" required>
                                     @error('personuid')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
