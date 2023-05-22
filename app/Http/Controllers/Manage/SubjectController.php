@@ -34,7 +34,9 @@ class SubjectController extends BaseController
      */
     public function show(Subject $subject){
         $this->setPageTitle($subject->name, 'Show Subject');
-        return view('Manage.pages.Subject.show', compact('subject'));
+        $classe = Classe::where('id','like',"%$subject->class_id%")->first();
+        //dd($class);
+        return view('Manage.pages.Subject.show', compact('subject', 'classe'));
     }
 
     /**
@@ -43,7 +45,7 @@ class SubjectController extends BaseController
      */
     public function assignStudents(Subject $subject){
         $this->setPageTitle($subject->name, 'Assign Students');
-        $students = Student::WhereNotIn('id', $subject->students->pluck('id'))->get();
+        $students = Student::WhereNotIn('id', $subject->students->pluck('id'))->whereNull('leave_at')->get();
         return view('Manage.pages.Subject.assign-student', compact('students', 'subject'));
     }
 
@@ -55,7 +57,8 @@ class SubjectController extends BaseController
      */
     public function attachAssignedStudents(Subject $subject, Request $request): RedirectResponse
     {
-        $subject->students()->attach($request->get('students'));
+        //dd($request->join_date);
+        $subject->students()->attach($request->get('students'), ['join_date'=>date('Y-m-d H:i:s', strtotime($request->join_date))]);
         alert('Good Job', 'Students Assigned Successfully', 'success');
         // Redirect Back
         return redirect()->route('subject.index');

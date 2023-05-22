@@ -45,6 +45,7 @@
                                 <tr>
                                     <th scope="col" class="sort" data-sort="students">Class id</th>
                                     <th scope="col" class="sort" data-sort="name">Name</th>
+                                    <th scope="col" class="sort" data-sort="name">Students Number</th>
                                     <th scope="col" class="sort" data-sort="teacher">Level</th>
                                     <th scope="col" class="sort" data-sort="teacher">Description</th>
                                     <th scope="col" class="sort" data-sort="action">Action</th>
@@ -58,6 +59,9 @@
                                         </td>
                                         <td class="text-capitalize">
                                             {{ $subject->name }}
+                                        </td>
+                                        <td class="text-capitalize">
+                                            {{ $subject->students->count() }}
                                         </td>
                                         <td class="text-capitalize">
                                             {{ $subject->level }}

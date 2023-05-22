@@ -14,7 +14,7 @@
                             <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark radius">
                                     <li class="breadcrumb-item"><i class="fas fa-book-open"></i></li>
-                                    <li class="breadcrumb-item"><a href="{{ route('subject.index') }}">Courses</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('subject.index') }}">Subjects</a></li>
                                     <li class="breadcrumb-item active">{{ $pageTitle }}</li>
                                 </ol>
                             </nav>
@@ -29,19 +29,19 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body text-center bg-white-100 radius shadow-2xl">
-                            <h2 class="mt-4">{{ $subject->name }}</h2>
+                            <h2 class="mt-4">{{ $classe->name }} {{ $subject->name }}</h2>
                             <p class="mb-0">{{ $subject->description }}</p>
                             <p class="text-bold"> {{ $subject->students->count() }} <i class="fas fa-users-class text-blue"></i> </p>
                             <hr>
                             <div class="text-left">
                                 <h2>List of Students</h2>
                                 <div class="table-responsive">
-                                    <table class="table align-items-center table-flush datatable-basic">
+                                    <table class="table align-items-center table-flush datatable-buttons">
                                         <thead class="thead-light">
                                         <tr>
-                                            <th scope="col" class="sort" data-sort="name">Name</th>
-                                            <th scope="col" class="sort" data-sort="email">Email</th>
-                                            <th scope="col" class="sort" data-sort="phone">Phone</th>
+                                            <th scope="col" class="sort" data-sort="name">#</th>
+                                            <th scope="col" class="sort" data-sort="email">Name</th>
+                                            <th scope="col" class="sort" data-sort="phone">join_date</th>
                                             <th scope="col" class="sort" data-sort="action">Action</th>
                                         </tr>
                                         </thead>
@@ -49,13 +49,13 @@
                                         @foreach ($subject->students as $student)
                                             <tr>
                                                 <td class="text-capitalize">
-                                                    {{ $student->name }}
+                                                    {{ $student->id }}
                                                 </td>
                                                 <td class="text-capitalize">
-                                                    {{ $student->email }}
+                                                    {{ $student->full_name }}
                                                 </td>
                                                 <td class="text-capitalize">
-                                                    {{ $student->phone }}
+                                                    {{ $student->pivot->join_date }}
                                                 </td>
                                                 <td class="text-capitalize">
                                                     <form action="{{ route('subject.remove.student',[$subject, $student]) }}" class="d-inline" method="post">
