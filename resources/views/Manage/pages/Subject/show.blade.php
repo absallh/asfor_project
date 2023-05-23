@@ -29,7 +29,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body text-center bg-white-100 radius shadow-2xl">
-                            <h2 class="mt-4">{{ $classe->name }} {{ $subject->name }}</h2>
+                            <h2 class="mt-4">{{ $classe->name }}:- {{ $subject->name }}</h2>
                             <p class="mb-0">{{ $subject->description }}</p>
                             <p class="text-bold"> {{ $subject->students->count() }} <i class="fas fa-users-class text-blue"></i> </p>
                             <hr>
