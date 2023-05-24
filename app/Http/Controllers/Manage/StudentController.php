@@ -20,27 +20,49 @@ class StudentController extends BaseController
      * Access the index page for the students to see all students
      * @return Application|Factory|View
      */
-    public function index(){
+    public function index()
+    {
         $this->setPageTitle('Students', 'All Students');
         $students = Student::all();
         return view('Manage.pages.Students.index', compact('students'));
     }
 
+    private function showDate(Student $student): array
+    {
+        $date = [];
+        if ($student->leave_at)
+            $date = ["Leave Date", $student->leave_at->format('d/m/Y')];
+        else if ($student->join_date)
+            $date = ["Join Date", $student->join_date->format('d/m/Y')];
+        else if ($student->test_date)
+            $date = ["Test Date", $student->test_date->format('d/m/Y')];
+        else if ($student->call_date)
+            $date = ["Call Date", $student->call_date->format('d/m/Y')];
+        else if ($student->apply_date)
+            $date = ["Apply Date", $student->apply_date->format('d/m/Y')];
+        else
+            $date = ["Date", ""];
+
+        return $date;
+    }
     /**
      * @param Student $student
      * @return Application|Factory|View
      */
-    public function show(Student $student){
+    public function show(Student $student)
+    {
         $this->setPageTitle($student->name, 'Show student');
         $student->load('phones');
-        return view('Manage.pages.Students.show', compact('student'));
+        $date = $this->showDate($student);
+        return view('Manage.pages.Students.show', compact('student', 'date'));
     }
 
     /**
      * @param Student $student
      * @return Application|Factory|View
      */
-    public function addPhone(Student $student){
+    public function addPhone(Student $student)
+    {
         $this->setPageTitle($student->name, 'Add Phone');
         return view('Manage.pages.Students.addPhone', compact('student'));
     }
@@ -49,7 +71,8 @@ class StudentController extends BaseController
      * @param Student $student
      * @return Application|Factory|View
      */
-    public function updatePhone(Student $student, Phone $phone){
+    public function updatePhone(Student $student, Phone $phone)
+    {
         $this->setPageTitle($student->name, 'Update Phone');
         return view('Manage.pages.Students.updatePhone', compact('student', 'phone'));
     }
@@ -62,8 +85,7 @@ class StudentController extends BaseController
     {
         try {
             Phone::create($request->validated());
-        }
-        catch (\Exception $exception){
+        } catch (\Exception $exception) {
             alert('Oops', 'Please try again', 'error');
         }
         // Show Sweet Alert Notification
@@ -83,8 +105,7 @@ class StudentController extends BaseController
         try {
             //$request->all();
             $phone->update($request->all());
-        }
-        catch (\Exception $exception){
+        } catch (\Exception $exception) {
             alert('Oops', 'Please try again', 'error');
         }
         // Show Sweet Alert Notification
@@ -101,8 +122,7 @@ class StudentController extends BaseController
     {
         try {
             $phone->delete();
-        }
-        catch (\Exception $exception){
+        } catch (\Exception $exception) {
             alert('Oops', 'Please try again', 'error');
         }
         // Show Sweet Alert Notification
@@ -120,14 +140,13 @@ class StudentController extends BaseController
         $student = null;
         try {
             $student = Student::create($request->validated());
-        }
-        catch (Exception $exception){
+        } catch (Exception $exception) {
             alert('Oops', 'Please try again', 'error');
         }
         // Show Sweet Alert Notification
         //alert('Good Job', 'Student Created Successfully', 'success');
         // Redirect Back
-        return redirect()->route('student.addPhone', ['student'=>$student->id]);
+        return redirect()->route('student.addPhone', ['student' => $student->id]);
     }
 
     /**
@@ -138,14 +157,14 @@ class StudentController extends BaseController
     public function update(UpdateStudentRequest $request, Student $student)
     {
         // dd($request);
+        // $data = $request->except('_method');
+        // dd($$request->all());
         try {
-            //$request->all();
+
             $student->update($request->all());
-        }
-        catch (\Exception $exception){
+        } catch (\Exception $exception) {
             alert('Oops', 'Please try again', 'error');
         }
-        // Show Sweet Alert Notification
         alert('Good Job', 'Student Updated Successfully', 'success');
         // Redirect Back
         return redirect()->back();
@@ -159,8 +178,7 @@ class StudentController extends BaseController
     {
         try {
             $student->delete();
-        }
-        catch (\Exception $exception){
+        } catch (\Exception $exception) {
             alert('Oops', 'Please try again', 'error');
         }
         // Show Sweet Alert Notification

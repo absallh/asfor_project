@@ -48,7 +48,7 @@
                                         @foreach ($subject->students as $student)
                                             <tr>
                                                 <td class="text-capitalize">
-                                                    {{ $student->name }}
+                                                    {{ $student->full_name }}
                                                 </td>
                                                 <td class="">
                                                     <div class="custom-control custom-radio d-inline">

@@ -69,8 +69,8 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <h5 class="card-title text-uppercase text-white mb-0">Join Date</h5>
-                                            <span class="h2 font-weight-bold text-white mb-0">{{ $student->join_date }}</span>
+                                            <h5 class="card-title text-uppercase text-white mb-0">{{$date[0]}}</h5>
+                                            <span class="h2 font-weight-bold text-white mb-0">{{ $date[1]}}</span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="icon icon-shape bg-red text-white rounded-circle shadow">
@@ -138,7 +138,7 @@
                                             <h3 class="mb-0">Phones</h3>
                                         </div>
                                         <div class="col-lg-6 col-5 text-right">
-                                            <button onclick="location.href='{{ route('student.addPhone', $student) }}';" 
+                                            <button onclick="location.href='{{ route('student.addPhone', $student) }}';"
                                             class="btn btn-sm btn-neutral"  data-toggle="modal" data-target="#createStudent"><i class="fas fa-plus mr-1"> </i> New</button>
                                         </div>
                                     </div>
@@ -222,6 +222,7 @@
                                         <td class="text-capitalize">
                                         </td>
                                         <td>
+                                            {{-- <form action="{{route('student.update')}}"></form> --}}
                                             <button data-toggle="modal" data-target="#updateSubject-" class="btn btn-sm bg-green-500 text-white m-0 radius" title="edit">
                                                 <i class="fas fa-edit" aria-hidden="true"></i>
                                             </button>

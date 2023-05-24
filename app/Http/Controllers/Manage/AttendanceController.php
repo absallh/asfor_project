@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Manage;
 
-use App\Http\Controllers\BaseController;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Attendance\StoreAttendanceRequest;
-use App\Models\Attendance;
+use Carbon\Carbon;
 use App\Models\Student;
 use App\Models\Subject;
-use Carbon\Carbon;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Attendance;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\Factory;
+use App\Http\Controllers\BaseController;
+use Illuminate\Contracts\Foundation\Application;
+use App\Http\Requests\Attendance\StoreAttendanceRequest;
 
 class AttendanceController extends BaseController
 {
@@ -34,6 +34,14 @@ class AttendanceController extends BaseController
      * @return Application|Factory|View
      */
     public function store(StoreAttendanceRequest $request){
+        // date('Y-m-d', strtodate($request->date));
+        // dd($request);
+        $attendanceFirst = Attendance::where('subject_id',$request->subject_id)->where('date', date('Y-m-d', strtotime($request->date)))->exists();
+        // dd($attendanceFirst);
+        if($attendanceFirst){
+            alert('Oops', " Try again ", 'error');
+            return redirect()->back();
+        }
         $attendance = Attendance::create($request->validated() + [
             'user_id' => Auth::id(),
             ]);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Student;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -44,4 +45,19 @@ class UpdateStudentRequest extends FormRequest
             'leave_at' => ['nullable', 'date']
         ];
     }
+    // function messages()
+    // {
+    //     return[
+    //         ""=>$this->rules()
+    //     ];
+    // }
+
+    protected function failedValidation(Validator $validator)
+    {
+        return $validator;
+    //     alert('Oops', 'Please try again', 'error');
+    //    redirect('Manage.pages.Students.modals.UpdateStudentModal')->with("student",$this->student)->withErrors($validator);
+
+    }
 }
+

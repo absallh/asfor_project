@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Attendance;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreAttendanceRequest extends FormRequest
 {
@@ -24,8 +25,20 @@ class StoreAttendanceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'subject_id' => ['required'],
-            'date' => ['required', 'date']
-        ];
+            'date' => ['required', 'date'],
+            // 'subject_id' => [
+            //     'required',
+            //     Rule::unique('attendances')->where(function ($query) {
+            //         return $query->where('date', $this->date);
+            //     })
+            // ],
+            'subject_id' => [
+                'required',
+                 Rule::unique('attendances')->where(function ($query) {
+                     $query->where('subject_id', $this->subject_id)
+                        ->where('date', $this->date);
+                 })
+            ],
+    ];
     }
 }

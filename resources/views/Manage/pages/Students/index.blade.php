@@ -74,7 +74,8 @@
                                             {{ $student->join_date }}
                                         </td>
                                         <td>
-                                            <button data-toggle="modal" data-target="#updateStudent-{{ $student->id }}" class="btn btn-sm bg-green-500 text-white m-0 radius" title="edit">
+                                            <button data-toggle="modal" data-target="#updateStudent-{{ $student->id }}"
+                                                class="btn btn-sm bg-green-500 text-white m-0 radius" title="edit">
                                                 <i class="fas fa-edit" aria-hidden="true"></i>
                                             </button>
                                             <!-- Update Student Modal -->
