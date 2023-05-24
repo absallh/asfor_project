@@ -84,6 +84,16 @@ class AttendanceController extends BaseController
                 else{
                     $value = null;
                 }
+
+                if($student->leave_count < 3 && $status == "off"){
+                    $student->leave_count += 1;
+                }else if($student->leave_count >= 3){
+                    $student->leave_at = $attendance->date;
+                }
+                else{
+                    $student->leave_count = 0;
+                }
+                $student->save();
                 $attendance->students()->attach($student->id, ['status' => $value]);
             }
             alert('Good Job', 'Attendance taken successfully', 'success');

@@ -31,6 +31,7 @@ class CreateStudentsTable extends Migration
             $table->string('test_ruslt')->nullable();
             $table->date('join_date')->nullable();
             $table->date('leave_at')->nullable();
+            $table->integer('leave_count')->default(0);
             $table->timestamps();
         });
     }
