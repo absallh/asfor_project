@@ -37,7 +37,7 @@ class Subject extends Model
      */
     public function teacher(): BelongsTo
     {
-        return $this->belongsTo(Teacher::class);
+        return $this->belongsTo(Employee::class);
     }
 
     /**

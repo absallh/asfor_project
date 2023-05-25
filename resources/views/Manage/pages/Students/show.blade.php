@@ -192,7 +192,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Subjects -->
         <div class="container-fluid mt-4">
             <div class="row">
@@ -214,35 +213,26 @@
                                 </tr>
                                 </thead>
                                 <tbody class="list">
+                                @foreach ($student->subjects as $subject)
                                     <tr>
                                         <td class="text-capitalize">
                                             <span class="badge badge-primary text-lg rounded-circle">
+                                                {{ $loop->iteration }}
                                             </span>
                                         </td>
                                         <td class="text-capitalize">
+                                            {{ $subject->name }}
                                         </td>
                                         <td>
-                                            {{-- <form action="{{route('student.update')}}"></form> --}}
-                                            <button data-toggle="modal" data-target="#updateSubject-" class="btn btn-sm bg-green-500 text-white m-0 radius" title="edit">
-                                                <i class="fas fa-edit" aria-hidden="true"></i>
-                                            </button>
-                                            <!-- Update Class Modal -->
-                                        <!--/ Update Class Modal -->
-                                            <a href="" class="btn btn-sm bg-blue-500 text-white m-0 radius" title="edit">
+                                            <a href="{{ route('subject.show', $subject) }}" class="btn btn-sm bg-blue-500 text-white m-0 radius" title="edit">
                                                 <i class="fas fa-eye" aria-hidden="true"></i>
                                             </a>
-                                            <a href="" class="btn btn-sm bg-yellow-500 text-white m-0 radius" title="Assign Students">
+                                            <a href="{{ route('subject.assign-student', $subject) }}" class="btn btn-sm bg-yellow-500 text-white m-0 radius" title="Assign Students">
                                                 <i class="fas fa-users-class" aria-hidden="true"></i>
                                             </a>
-                                            <form action="" class="d-inline" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button onclick="return confirm('Are you sure? this action will remove all assigned students too')" type="submit" class="btn btn-sm bg-red-500 text-white radius" title="delete">
-                                                    <i class="fas fa-trash" aria-hidden="true"></i>
-                                                </button>
-                                            </form>
                                         </td>
                                     </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

@@ -22,6 +22,14 @@ class Attendance extends Model
     protected $dates = ['date', 'created_at'];
 
     /**
+     * @return BelongsTo
+     */
+    public function classe(): BelongsTo
+    {
+        return $this->belongsTo(Classe::class, 'subject', 'id','class_id');
+    }
+
+    /**
      * @return BelongsToMany
      */
     public function students(): BelongsToMany

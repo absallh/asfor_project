@@ -40,6 +40,10 @@ Route::group(['middleware' => 'role:Admin','namespace' => 'Manage', 'prefix' => 
 
     Route::delete('/student/{student}/{phone}', 'StudentController@destroyStudentPhone')->name('student.phone.destroy');
 
+    // Student Resources
+    Route::resource('/teacher', 'TeacherController')->except('create', 'edit');
+    Route::get('/teacher/addTeacher', 'TeacherController@addTeacher')->name('teacher.addTeacher');
+
     // Class Resources
     Route::resource('/class', 'ClassController')->except('create', 'edit');
     Route::get('/class/{classe}/assign', 'ClassController@assign_subject')->name('classe.assign-subject');

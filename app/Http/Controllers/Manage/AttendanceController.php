@@ -24,8 +24,9 @@ class AttendanceController extends BaseController
      */
     public function index(){
         $this->setPageTitle("Attendances" , 'All Attendances');
-        $attendances = Attendance::with(['subject', 'teacher'])->WhereSubject(request()->get('subject_filter'))->WhereDateIs(request()->get('date_filter'))->withCount('students')->get();
+        $attendances = Attendance::with(['classe', 'subject', 'teacher'])->WhereSubject(request()->get('subject_filter'))->WhereDateIs(request()->get('date_filter'))->withCount('students')->get();
         $subjects = Subject::all();
+        //$attendances->load('subject');
         return view('Manage.pages.Attendance.index', compact('attendances', 'subjects'));
     }
 
@@ -87,8 +88,9 @@ class AttendanceController extends BaseController
 
                 if($student->leave_count < 3 && $status == "off"){
                     $student->leave_count += 1;
-                }else if($student->leave_count >= 3){
+                }else if($student->leave_count >= 3 && $status == "off"){
                     $student->leave_at = $attendance->date;
+                    $student->subjects()->updateExistingPivot($attendance->subject, ['leave_at'=>$attendance->date], false);
                 }
                 else{
                     $student->leave_count = 0;

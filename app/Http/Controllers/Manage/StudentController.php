@@ -24,6 +24,7 @@ class StudentController extends BaseController
     {
         $this->setPageTitle('Students', 'All Students');
         $students = Student::all();
+        $students->load('phones');
         return view('Manage.pages.Students.index', compact('students'));
     }
 
@@ -41,7 +42,7 @@ class StudentController extends BaseController
         else if ($student->apply_date)
             $date = ["Apply Date", $student->apply_date->format('d/m/Y')];
         else
-            $date = ["Date", ""];
+            $date = ["Date", "N/A"];
 
         return $date;
     }
@@ -52,7 +53,9 @@ class StudentController extends BaseController
     public function show(Student $student)
     {
         $this->setPageTitle($student->name, 'Show student');
-        $student->load('phones');
+        $student->load(['phones', 'subjects'=>function ($query) {
+                                                    $query->whereNull('leave_at');
+                                                }]);
         $date = $this->showDate($student);
         return view('Manage.pages.Students.show', compact('student', 'date'));
     }

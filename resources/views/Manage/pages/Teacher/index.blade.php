@@ -1,5 +1,4 @@
 @extends('Manage.layouts.app')
-
 @section('content')
     <div class="main-content" id="panel">
     @include('Manage.includes.header')
@@ -9,7 +8,7 @@
                 <div class="header-body">
                     <div class="row align-items-center py-4">
                         <div class="col-lg-6 col-7">
-                            <h6 class="h2 text-white d-inline-block mb-0"> <a href="{{ route('dashboard') }}">Students</a></h6>
+                            <h6 class="h2 text-white d-inline-block mb-0"> <a href="{{ route('dashboard') }}">Teachers</a></h6>
                             <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark radius">
                                     <li class="breadcrumb-item"><i class="fas fa-users-class"></i></li>
@@ -18,17 +17,13 @@
                             </nav>
                         </div>
                         <div class="col-lg-6 col-5 text-right">
-                            <button class="btn btn-sm btn-neutral"  data-toggle="modal" data-target="#createStudent"><i class="fas fa-plus mr-1"> </i> New</button>
+                            <button class="btn btn-sm btn-neutral"  data-toggle="modal" data-target="#createTeacher" onclick="document.location.href='{{route('teacher.addTeacher')}}';"><i class="fas fa-plus mr-1"> </i> New</button>
                             <a href="{{ route('dashboard') }}" class="btn btn-sm btn-neutral"><i class="fa fa-home" aria-hidden="true"></i> </a>
-                            <!-- Create Student Modal -->
-                            @include('Manage.pages.Students.modals.CreateStudentModal')
-                            <!--/ Create Student Modal -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="container-fluid mt-4">
             <div class="row">
                 <div class="col-12">
@@ -44,45 +39,40 @@
                                 <thead class="thead-light">
                                 <tr>
                                     <th scope="col" class="sort" data-sort="employee">#</th>
-                                    <th scope="col" class="sort" data-sort="employee">National Id</th>
                                     <th scope="col" class="sort" data-sort="employee">Name</th>
-                                    <th scope="col" class="sort" data-sort="employee">Phones</th>
-                                    <th scope="col" class="sort" data-sort="service">Address</th>
+                                    <th scope="col" class="sort" data-sort="employee">Salary</th>
+                                    <th scope="col" class="sort" data-sort="employee">Shift Hours</th>
+                                    <th scope="col" class="sort" data-sort="employee">Join Date</th>
                                     <th scope="col" data-sort="action">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody class="list">
-                                @foreach ($students as $student)
+                                @foreach ($teachers as $teacher)
                                     <tr>
                                         <td class="text-md">
-                                            {{ $student->id }}
+                                            {{ $teacher->id }}
                                         </td>
                                         <td class="text-md">
-                                            {{ $student->personuid }}
+                                            {{ $teacher->name }}
                                         </td>
                                         <td class="text-capitalize">
-                                            {{ $student->full_name }}
+                                            {{ $teacher->salary }}
                                         </td>
                                         <td class="text-capitalize">
-                                            @foreach ($student->phones as $phone)
-                                                {{$phone->phone}}, 
-                                            @endforeach
+                                            {{ $teacher->shift_hours }}
                                         </td>
                                         <td class="text-capitalize">
-                                            {{ Str::limit($student->address, 30, "...") }}
+                                            {{ $teacher->join_date }}
                                         </td>
                                         <td>
-                                            <button data-toggle="modal" data-target="#updateStudent-{{ $student->id }}"
+                                            <button data-toggle="modal" data-target="#updateTeacher-{{ $teacher->id }}"
                                                 class="btn btn-sm bg-green-500 text-white m-0 radius" title="edit">
                                                 <i class="fas fa-edit" aria-hidden="true"></i>
                                             </button>
-                                            <!-- Update Student Modal -->
-                                            @include('Manage.pages.Students.modals.UpdateStudentModal', ['student' => $student])
-                                            <!--/ Update Student Modal -->
-                                            <a href="{{ route('student.show', $student) }}" class="btn btn-sm bg-blue-500 text-white m-0 radius" title="edit">
+                                            <a href="{{ route('teacher.show', $teacher) }}" class="btn btn-sm bg-blue-500 text-white m-0 radius" title="edit">
                                                 <i class="fas fa-eye" aria-hidden="true"></i>
                                             </a>
-                                            <form action="{{ route('student.destroy', $student) }}" class="d-inline" method="post">
+                                            <form action="{{ route('teacher.destroy', $teacher) }}" class="d-inline" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-sm bg-red-500 text-white radius" title="delete">
@@ -103,5 +93,4 @@
     </div>
 @endsection
 @push('scripts')
-
 @endpush

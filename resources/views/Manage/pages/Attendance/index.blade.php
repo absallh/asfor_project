@@ -76,7 +76,7 @@
                             <table class="table align-items-center table-flush datatable-buttons">
                                 <thead class="thead-light">
                                 <tr>
-                                    <th scope="col" class="sort" data-sort="number">#</th>
+                                    <th scope="col" class="sort" data-sort="subject">Class</th>
                                     <th scope="col" class="sort" data-sort="subject">Subject</th>
                                     <th scope="col" class="sort" data-sort="teacher">Teacher</th>
                                     <th scope="col" class="sort" data-sort="students">Students Number</th>
@@ -88,9 +88,7 @@
                                 @foreach ($attendances as $attendance)
                                     <tr>
                                         <td class="text-capitalize">
-                                            <span class="badge badge-primary text-lg rounded-circle">
-                                                {{ $loop->iteration }}
-                                            </span>
+                                            {{ $attendance->subject->name }}
                                         </td>
                                         <td class="text-capitalize">
                                             {{ $attendance->subject->name }}

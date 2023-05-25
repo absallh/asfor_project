@@ -24,6 +24,9 @@ class SubjectController extends BaseController
     public function index(){
         $this->setPageTitle('Subjects', 'All Subjects');
         $subjects = Subject::all();
+        $subjects->load(['students'=>function ($query) {
+                                        $query->whereNull('subject_student.leave_at');
+                                    }]);
         $classes = Classe::all();
         return view('Manage.pages.Subject.index', compact('subjects', 'classes'));
     }
@@ -35,6 +38,9 @@ class SubjectController extends BaseController
     public function show(Subject $subject){
         $this->setPageTitle($subject->name, 'Show Subject');
         $classe = Classe::where('id','like',"%$subject->class_id%")->first();
+        $subject->load(['students'=>function ($query) {
+                                                    $query->whereNull('subject_student.leave_at');
+                                                }]);
         //dd($class);
         return view('Manage.pages.Subject.show', compact('subject', 'classe'));
     }
