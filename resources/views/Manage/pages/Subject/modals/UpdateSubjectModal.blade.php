@@ -42,7 +42,21 @@
                                     @enderror
                                 </div>
                             </div>
-
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="employee_id">Select Teacher*</label>
+                                    <select id="employee_id" name="employee_id"  class="form-control radius" required>
+                                        @foreach ($teachers as $teacher)
+                                        <option value="{{$teacher->id}}">{{$teacher->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('employee_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-control-label" for="level">Level</label>

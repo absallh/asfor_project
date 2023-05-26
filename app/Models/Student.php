@@ -73,7 +73,7 @@ class Student extends Model
      */
     public function exceptions(): HasMany
     {
-        return $this->hasMany(Exception::class);
+        return $this->hasMany(Exceptions::class);
     }
 
     /**

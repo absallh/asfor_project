@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Subject;
+namespace App\Http\Requests\Teacher;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSubjectRequest extends FormRequest
+class StoreTeacherRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,11 @@ class StoreSubjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'max:255'],
-            'level' => ['nullable', 'string'],
-            'description' => ['nullable', 'string'],
-            'class_id' => ['required'],
-            'employee_id' => ['required'],
+            'name' => ['required'],
+            'salary' => ['nullable'],
+            'shift_hours' => ['nullable'],
+            'join_date' => ['nullable', 'date'],
+            //'join_date' => ['date']
         ];
     }
 }

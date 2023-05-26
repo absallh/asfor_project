@@ -12,7 +12,7 @@ class Exceptions extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['reason', 'student_id', 'reciving_date', 'start_date', 'end_date'];
+    protected $fillable = ['reason', 'type', 'student_id', 'reciving_date', 'start_date', 'end_date'];
     protected $dates = ['reciving_date', 'start_date', 'end_date'];
 
     /**

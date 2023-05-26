@@ -26,6 +26,7 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'password',
+        'gender',
         'role'
     ];
 
@@ -35,8 +36,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'password'
     ];
 
     /**
@@ -52,29 +52,4 @@ class User extends Authenticatable
                 return false;
         }
     }
-
-    /**
-     * @return BelongsToMany
-     */
-   /* public function subjects(): BelongsToMany
-    {
-        return $this->belongsToMany(Subject::class)->withTimestamps();
-    }
-
-    /**
-     * @return BelongsToMany
-     */
-   /* public function classes(): BelongsToMany
-    {
-        return $this->belongsToMany(Classe::class, 'class_user', 'user_id', 'class_id')->withTimestamps();
-    }
-
-    /**
-     * @return HasMany
-     */
-   /* public function attendances(): HasMany
-    {
-        return $this->hasMany(Attendance::class);
-    }
-    */
 }

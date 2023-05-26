@@ -16,6 +16,7 @@ class CreateClassesTable extends Migration
         Schema::create('classes', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->enum('gender', ['m', 'f'])->default('m');
             $table->text('description')->nullable();
             $table->timestamps();
         });

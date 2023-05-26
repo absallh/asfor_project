@@ -6,8 +6,11 @@ use App\Http\Controllers\BaseController;
 use App\Http\Requests\Student\StoreStudentRequest;
 use App\Http\Requests\Student\UpdateStudentRequest;
 use App\Http\Requests\Student\StorePhoneRequest;
+use App\Http\Requests\Student\StoreExceptionRequest;
+use App\Http\Requests\Student\StoreWarningRequest;
 use App\Models\Student;
 use App\Models\Phone;
+use App\Models\Exceptions;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -56,8 +59,123 @@ class StudentController extends BaseController
         $student->load(['phones', 'subjects'=>function ($query) {
                                                     $query->whereNull('leave_at');
                                                 }]);
+
+        $exceptions = Exceptions::where('type', 'exception')->where('student_id', "$student->id")->get();
+        $warnings = Exceptions::where('type', 'warning')->where('student_id', "$student->id")->get();
         $date = $this->showDate($student);
-        return view('Manage.pages.Students.show', compact('student', 'date'));
+        return view('Manage.pages.Students.show', compact('student', 'date', 'exceptions', 'warnings'));
+    }
+
+    /**
+     * @param Student $student
+     * @return Application|Factory|View
+     */
+    public function addException(Student $student)
+    {
+        $this->setPageTitle($student->name, 'Add Exception');
+        return view('Manage.pages.Students.addException', compact('student'));
+    }
+
+    public function storeException(Student $student, StoreExceptionRequest $request)
+    {
+        //dd($request);
+        try {
+            Exceptions::create($request->validated());
+        } catch (\Exception $exception) {
+            alert('Oops', 'Please try again', 'error');
+        }
+        // Show Sweet Alert Notification
+        alert('Good Job', 'Exception Created Successfully', 'success');
+        // Redirect Back
+        return redirect()->route('student.show', ['student' => $student->id]);
+    }
+
+    /**
+     * @param Student $student
+     * @return Application|Factory|View
+     */
+    public function updateException(Student $student, Exceptions $exception)
+    {
+        $this->setPageTitle($student->name, 'Update Exception');
+        return view('Manage.pages.Students.updateException', compact('student', 'exception'));
+    }
+
+    public function editException(StoreExceptionRequest $request, Student $student, Exceptions $exception): RedirectResponse
+    {
+        //dd($request);
+        try {
+            //$request->all();
+            $exception->update($request->all());
+        } catch (\Exception $ex) {
+            alert('Oops', 'Please try again', 'error');
+        }
+        // Show Sweet Alert Notification
+        alert('Good Job', 'Exception Updated Successfully', 'success');
+        // Redirect Back
+        return redirect()->route('student.show', ['student' => $student->id]);
+    }
+
+    /**
+     * @param Student $student
+     * @return Application|Factory|View
+     */
+    public function addWarning(Student $student)
+    {
+        $this->setPageTitle($student->name, 'Add Exception');
+        return view('Manage.pages.Students.addWarning', compact('student'));
+    }
+
+    public function storeWarning(Student $student, StoreWarningRequest $request)
+    {
+        //dd($request);
+        try {
+            Exceptions::create($request->validated());
+        } catch (\Exception $exception) {
+            alert('Oops', 'Please try again', 'error');
+        }
+        // Show Sweet Alert Notification
+        alert('Good Job', 'Warning Created Successfully', 'success');
+        // Redirect Back
+        return redirect()->route('student.show', ['student' => $student->id]);
+    }
+
+    /**
+     * @param Student $student
+     * @return Application|Factory|View
+     */
+    public function updateWarning(Student $student, Exceptions $exception)
+    {
+        $this->setPageTitle($student->name, 'Update Exception');
+        return view('Manage.pages.Students.updateWarning', compact('student', 'exception'));
+    }
+
+    public function editWarning(StoreWarningRequest $request, Student $student, Exceptions $exception): RedirectResponse
+    {
+        //dd($request);
+        try {
+            //$request->all();
+            $exception->update($request->all());
+        } catch (\Exception $ex) {
+            alert('Oops', 'Please try again', 'error');
+        }
+        // Show Sweet Alert Notification
+        alert('Good Job', 'Warning Updated Successfully', 'success');
+        // Redirect Back
+        return redirect()->route('student.show', ['student' => $student->id]);
+    }
+
+    public function destroyStudentException(string $student, string $exception)
+    {
+        $exception = Exceptions::where('id', "$exception")->first();
+        try {
+            $exception->delete();
+        } catch (\Exception $exception) {
+            alert('Oops', 'Please try again', 'error');
+        }
+        // Show Sweet Alert Notification
+        alert('Good Job', 'Exception removed Successfully', 'success');
+        // Redirect Back
+        return redirect()->back();
     }
 
     /**
@@ -92,7 +210,7 @@ class StudentController extends BaseController
             alert('Oops', 'Please try again', 'error');
         }
         // Show Sweet Alert Notification
-        alert('Good Job', 'Student Created Successfully', 'success');
+        alert('Good Job', 'Created Successfully', 'success');
         // Redirect Back
         return redirect()->route('student.show', ['student' => $student->id]);
     }

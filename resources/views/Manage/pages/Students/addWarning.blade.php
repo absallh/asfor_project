@@ -10,13 +10,14 @@
             <div class="header-body">
                 <div class="row align-items-center py-4">
                     <div class="col-lg-6 col-7">
-                        <h6 class="h2 text-white d-inline-block mb-0">Add Teacher</h6>
+                        <h6 class="h2 text-white d-inline-block mb-0">Add Warning</h6>
                         <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i
                                             class="fas fa-home"></i></a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="">Add Teacher</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{$student->id}}</li>
+                                <li class="breadcrumb-item"><a href="">Add Warning</a></li>
                             </ol>
                         </nav>
                     </div>
@@ -40,51 +41,29 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label class="form-control-label" for="name">Name</label>
-                                                        <input type="text" id="name" class="form-control radius @error('name') is-invalid @enderror"
-                                                            value="" name="name" placeholder="Enter Teacher name" required>
-                                                        @error('name')
+                                                        <label class="form-control-label" for="reason">Reason</label>
+                                                        <input type="text" id="reason" class="form-control name radius @error('reason') is-invalid @enderror"
+                                                            value="" name="reason" placeholder="Enter reason Number" required>
+                                                        @error('reason')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                         @enderror
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label class="form-control-label" for="salary">salary</label>
-                                                        <input type="number" step="0.01" id="salary" class="form-control radius @error('salary') is-invalid @enderror"
-                                                            value="" name="salary" placeholder="Enter Teacher salary">
-                                                        @error('salary')
+                                                        <label class="form-control-label" for="Reciving date">Date</label>
+                                                        <input class="form-control datepicker  @error('reciving_date') is-invalid @enderror " name="reciving_date" id="reciving_date" placeholder="Select reaciving date" type="text" value="" required>
+                                                        @error('reciving_date')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                         @enderror
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="form-control-label" for="shift_hours">Hhift Hours</label>
-                                                        <input type="number" step="0.01" id="shift_hours" class="form-control name radius @error('shift_hours') is-invalid @enderror"
-                                                            value="" name="shift_hours" placeholder="Enter shift hours">
-                                                        @error('shift_hours')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="form-control-label" for="join_date">Join Date</label>
-                                                        <input class="form-control datepicker  @error('apply_date') is-invalid @enderror " name="join_date" id="join_date" placeholder="Select join date" type="text" value="">
-                                                        @error('join_date')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
+                                                <input type="hidden" name="student_id" value="{{ $student->id }}">
+                                                <input type="hidden" name="type" value="warning">
                                             </div>
                                             <button type="submit" class="btn btn-primary btn-lg btn-block radius">Add</button>
                                         </form>

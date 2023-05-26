@@ -17,7 +17,7 @@
                             </nav>
                         </div>
                         <div class="col-lg-6 col-5 text-right">
-                            <button class="btn btn-sm btn-neutral"  data-toggle="modal" data-target="#createTeacher" onclick="document.location.href='{{route('teacher.addTeacher')}}';"><i class="fas fa-plus mr-1"> </i> New</button>
+                            <button class="btn btn-sm btn-neutral"  data-toggle="modal" data-target="#createTeacher" onclick="document.location.href='{{route('teacher.CreateTeacher')}}';"><i class="fas fa-plus mr-1"> </i> New</button>
                             <a href="{{ route('dashboard') }}" class="btn btn-sm btn-neutral"><i class="fa fa-home" aria-hidden="true"></i> </a>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                                             {{ $teacher->join_date }}
                                         </td>
                                         <td>
-                                            <button data-toggle="modal" data-target="#updateTeacher-{{ $teacher->id }}"
+                                            <button onclick="document.location.href='{{ route('teacher.updateTeacher', $teacher) }}';" data-toggle="modal" data-target="#updateTeacher-{{ $teacher->id }}"
                                                 class="btn btn-sm bg-green-500 text-white m-0 radius" title="edit">
                                                 <i class="fas fa-edit" aria-hidden="true"></i>
                                             </button>

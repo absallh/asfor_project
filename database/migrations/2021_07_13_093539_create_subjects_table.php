@@ -16,7 +16,8 @@ class CreateSubjectsTable extends Migration
             $table->string('name');
             $table->string('level')->nullable();
             $table->text('description')->nullable();
-            //$table->foreignId('employee_id')->constrained('employees')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->enum('gender', ['m', 'f'])->default('m');
+            $table->foreignId('employee_id')->constrained('employees')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('class_id')->constrained('classes')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });

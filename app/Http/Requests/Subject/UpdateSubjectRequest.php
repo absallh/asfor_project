@@ -32,6 +32,7 @@ class UpdateSubjectRequest extends FormRequest
             'level' => ['nullable', 'string'],
             'description' => ['nullable', 'string'],
             'class_id' => ['required'],
+            'employee_id' => ['required'],
         ];
     }
 }

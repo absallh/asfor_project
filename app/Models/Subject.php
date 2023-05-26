@@ -20,7 +20,7 @@ class Subject extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'name', 'level', 'description', 'class_id'];
+    protected $fillable = ['id', 'name', 'level', 'description', 'class_id', 'employee_id'];
 
     protected $dates = ['created_at'];
 

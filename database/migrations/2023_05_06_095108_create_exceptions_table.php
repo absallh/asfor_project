@@ -15,11 +15,12 @@ class CreateExceptionsTable extends Migration
     {
         Schema::create('exceptions', function (Blueprint $table) {
             $table->id();
+            $table->enum('type', ['exception', 'warning'])->default('exception');
             $table->string('reason');
             $table->foreignId('student_id')->constrained('students')->cascadeOnDelete()->cascadeOnUpdate(); // the teacher
             $table->date('reciving_date');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->timestamps();
         });
     }

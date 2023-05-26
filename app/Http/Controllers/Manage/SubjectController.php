@@ -8,6 +8,7 @@ use App\Http\Requests\Subject\UpdateSubjectRequest;
 use App\Models\Subject;
 use App\Models\Student;
 use App\Models\Classe;
+use App\Models\Employee;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -24,11 +25,12 @@ class SubjectController extends BaseController
     public function index(){
         $this->setPageTitle('Subjects', 'All Subjects');
         $subjects = Subject::all();
-        $subjects->load(['students'=>function ($query) {
+        $subjects->load(['classe', 'students'=>function ($query) {
                                         $query->whereNull('subject_student.leave_at');
                                     }]);
         $classes = Classe::all();
-        return view('Manage.pages.Subject.index', compact('subjects', 'classes'));
+        $teachers = Employee::where('emp_type','Teacher')->get();
+        return view('Manage.pages.Subject.index', compact('subjects', 'classes', 'teachers'));
     }
 
     /**
