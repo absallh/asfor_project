@@ -41,7 +41,8 @@
                                         <tr>
                                             <th scope="col" class="sort" data-sort="name">#</th>
                                             <th scope="col" class="sort" data-sort="email">Name</th>
-                                            <th scope="col" class="sort" data-sort="phone">join_date</th>
+                                            <th scope="col" class="sort" data-sort="phone">join date</th>
+                                            <th scope="col" class="sort" data-sort="phone">Leave Count</th>
                                             <th scope="col" class="sort" data-sort="action">Action</th>
                                         </tr>
                                         </thead>
@@ -56,6 +57,9 @@
                                                 </td>
                                                 <td class="text-capitalize">
                                                     {{ $student->pivot->join_date }}
+                                                </td>
+                                                <td class="text-capitalize">
+                                                    {{ $student->pivot->leave_count }}
                                                 </td>
                                                 <td class="text-capitalize">
                                                     <form action="{{ route('subject.remove.student',[$subject, $student]) }}" class="d-inline" method="post">
