@@ -17,10 +17,11 @@ class CreateSubjectStudentTable extends Migration
             $table->id();
             $table->foreignId('subject_id')->constrained('subjects')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('student_id')->constrained('students')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->date('join_date');
+            $table->date('join_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->string('reason')->nullable();
             $table->string('level')->nullable();
             $table->date('leave_at')->nullable();
+            $table->integer('leave_count')->default(0);
             $table->timestamps();
         });
     }

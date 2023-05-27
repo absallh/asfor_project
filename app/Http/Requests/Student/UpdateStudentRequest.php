@@ -30,7 +30,6 @@ class UpdateStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //'id' => ['required', Rule::unique('students')->ignore($this->student->id)],
             'first_name' => ['required', 'max:255'],
             'father_name' => ['required', 'min:6', 'max:255'],
             'mother_name' => ['nullable','min:6', 'max:255'],
@@ -42,7 +41,15 @@ class UpdateStudentRequest extends FormRequest
             'test_date' => ['nullable', 'date'],
             'test_ruslt' => ['max:255'],
             'join_date' => ['nullable', 'date'],
-            'leave_at' => ['nullable', 'date']
+            'leave_at' => ['nullable', 'date'],
+            'description' => ['nullable', 'string'],
+            'education_type' => ['nullable', 'string'],
+            'student_job' => ['nullable', 'string'],
+            'school' => ['nullable', 'string'],
+            'school_level' => ['nullable', 'string'],
+            'parents_status' => ['nullable', 'string'],
+            'father_job' => ['nullable', 'string'],
+            'mother_job' => ['nullable', 'string'],
         ];
     }
     // function messages()

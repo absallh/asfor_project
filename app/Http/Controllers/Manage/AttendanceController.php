@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Attendance;
+use App\Models\Exceptions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\View\View;
@@ -24,7 +25,7 @@ class AttendanceController extends BaseController
      */
     public function index(){
         $this->setPageTitle("Attendances" , 'All Attendances');
-        $attendances = Attendance::with(['classe', 'subject', 'teacher'])->WhereSubject(request()->get('subject_filter'))->WhereDateIs(request()->get('date_filter'))->withCount('students')->get();
+        $attendances = Attendance::with(['subject', 'teacher'])->WhereSubject(request()->get('subject_filter'))->WhereDateIs(request()->get('date_filter'))->withCount('students')->get();
         $subjects = Subject::all();
         //$attendances->load('subject');
         return view('Manage.pages.Attendance.index', compact('attendances', 'subjects'));
@@ -47,7 +48,9 @@ class AttendanceController extends BaseController
             'user_id' => Auth::id(),
             ]);
         $subject = Subject::findorfail($request->get('subject_id'));
-        $subject->load('students');
+        $subject->load(['students'=>function ($query) {
+                                        $query->whereNull('subject_student.leave_at');
+                                    }]);
         $this->setPageTitle($attendance->idm , 'Attendance');
         alert('Good Job', 'You can start your attendance now!!', 'success');
         return view('Manage.pages.Attendance.take-attendance', compact('attendance', 'subject'));
@@ -79,23 +82,27 @@ class AttendanceController extends BaseController
                 $student = Student::findorfail($student_id);
                 if ($status == "on") {
                     $value = 1;
+                    $leave_count = 0;
+                    $student->subjects()->updateExistingPivot($attendance->subject, ['leave_count'=>$leave_count], false);
                 } elseif($status == "off") {
                     $value = 0;
+                    $request_date = date('Y-m-d', strtotime($request->date));
+                    if(!Exceptions::where('student_id',$student_id)->whereRaw("'$request_date' BETWEEN start_date AND end_date")->exists()){
+                        $leave_count = $student->subjects()->where('subject_id', $attendance->subject->id)->first()->pivot->leave_count;
+                        $leave_count += 1;
+                        $student->subjects()->updateExistingPivot($attendance->subject, ['leave_count'=>$leave_count], false);
+                    }
                 }
                 else{
                     $value = null;
                 }
-
-                if($student->leave_count < 3 && $status == "off"){
-                    $student->leave_count += 1;
-                }else if($student->leave_count >= 3 && $status == "off"){
-                    $student->leave_at = $attendance->date;
-                    $student->subjects()->updateExistingPivot($attendance->subject, ['leave_at'=>$attendance->date], false);
-                }
-                else{
-                    $student->leave_count = 0;
-                }
-                $student->save();
+                // if($student->leave_count < 3 && $status == "off"){
+                    
+                // }else if($student->leave_count >= 3 && $status == "off"){
+                //     $student->subjects()->updateExistingPivot($attendance->subject, ['leave_at'=>$attendance->date, 'leave_count'=>$leave_count], false);
+                // }
+                // else{
+                // }
                 $attendance->students()->attach($student->id, ['status' => $value]);
             }
             alert('Good Job', 'Attendance taken successfully', 'success');
@@ -113,7 +120,7 @@ class AttendanceController extends BaseController
         $attendance->students()->detach();
         $this->attachStudents($attendance, $request);
         alert('Good Job', 'Attendance Data updated successfully', 'success');
-        return  back();
+        return redirect()->route('attendance.index');
     }
 
     /**

@@ -10,6 +10,7 @@ use App\Models\Student;
 use App\Models\Classe;
 use App\Models\Employee;
 use App\Models\User;
+use \Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -52,8 +53,12 @@ class SubjectController extends BaseController
      * @return Application|Factory|View
      */
     public function assignStudents(Subject $subject){
+        // dd(Student);
+        $subject->load(['students'=>function ($query) {
+            $query->whereNull('subject_student.leave_at');
+        }]);
         $this->setPageTitle($subject->name, 'Assign Students');
-        $students = Student::WhereNotIn('id', $subject->students->pluck('id'))->whereNull('leave_at')->get();
+        $students = Student::WhereNotIn('id', $subject->students->pluck('id'))->get();
         return view('Manage.pages.Subject.assign-student', compact('students', 'subject'));
     }
 
@@ -65,8 +70,9 @@ class SubjectController extends BaseController
      */
     public function attachAssignedStudents(Subject $subject, Request $request): RedirectResponse
     {
-        //dd($request->join_date);
-        $subject->students()->attach($request->get('students'), ['join_date'=>date('Y-m-d H:i:s', strtotime($request->join_date))]);
+        // dd($request->join_date);
+        $subject->students()->attach($request->get('students'));
+        $subject->students()->updateExistingPivot($request->get('students'), ['join_date'=>date('Y-m-d H:i:s', strtotime($request->join_date))], false);
         alert('Good Job', 'Students Assigned Successfully', 'success');
         // Redirect Back
         return redirect()->route('subject.index');
@@ -80,7 +86,7 @@ class SubjectController extends BaseController
      */
     public function detachAssignedStudent(Subject $subject, Student $student): RedirectResponse
     {
-        $subject->students()->detach($student);
+        $subject->students()->updateExistingPivot($student, ['leave_at'=>Carbon::today()], false);
         alert('Good Job', $student->name . ' Removed Successfully', 'success');
         // Redirect Back
         return redirect()->back();

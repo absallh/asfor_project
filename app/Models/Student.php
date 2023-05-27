@@ -25,7 +25,9 @@ class Student extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'first_name', 'father_name', 'full_name', 'mother_name', 'address', 'personuid', 'apply_date', 'call_date', 'call_ruslt', 'test_date', 'test_ruslt', 'join_date', 'leave_at', 'leave_count'];
+    protected $fillable = ['id', 'first_name', 'father_name', 'full_name', 'mother_name', 'address', 'personuid', 'apply_date', 'call_date', 
+                            'call_ruslt', 'test_date', 'test_ruslt', 'join_date', 'leave_at', 'description', 'education_type', 'student_job',
+                            'school', 'school_level', 'parents_status', 'father_job', 'mother_job'];
     protected $dates = ['apply_date', 'call_date', 'test_date', 'join_date', 'leave_at'];
 
     /**
@@ -33,7 +35,7 @@ class Student extends Model
      */
     public function subjects(): BelongsToMany
     {
-        return $this->belongsToMany(Subject::class, 'subject_student')->withTimestamps();
+        return $this->belongsToMany(Subject::class, 'subject_student')->withTimestamps()->withPivot('leave_count', 'leave_at', 'reason', 'level', 'join_date');
     }
 
     /**

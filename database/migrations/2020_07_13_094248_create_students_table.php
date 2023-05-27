@@ -16,8 +16,16 @@ class CreateStudentsTable extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
+            $table->string('student_job')->nullable();
+            $table->enum('education_type', ['عام', 'أزهري'])->nullable();
+            $table->string('school')->nullable();
+            $table->string('school_level')->nullable();
+            $table->enum('parents_status', ['مستقرة', 'منفصلين', 'مطلقين'])->nullable();
+            $table->text('description')->nullable();
             $table->string('father_name');
+            $table->string('father_job')->nullable();
             $table->string('mother_name')->nullable();
+            $table->string('mother_job')->nullable();
             $table->longText('full_name')->virtualAs( "CONCAT(first_name,' ',father_name)" );
             $table->longText('address')->nullable();
             //$table->string('email');
@@ -31,7 +39,7 @@ class CreateStudentsTable extends Migration
             $table->string('test_ruslt')->nullable();
             $table->date('join_date')->nullable();
             $table->date('leave_at')->nullable();
-            $table->integer('leave_count')->default(0);
+            // $table->integer('leave_count')->default(0);
             $table->timestamps();
         });
     }

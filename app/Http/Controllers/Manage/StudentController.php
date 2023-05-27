@@ -56,10 +56,7 @@ class StudentController extends BaseController
     public function show(Student $student)
     {
         $this->setPageTitle($student->name, 'Show student');
-        $student->load(['phones', 'subjects'=>function ($query) {
-                                                    $query->whereNull('leave_at');
-                                                }]);
-
+        $student->load(['phones', 'subjects']);
         $exceptions = Exceptions::where('type', 'exception')->where('student_id', "$student->id")->get();
         $warnings = Exceptions::where('type', 'warning')->where('student_id', "$student->id")->get();
         $date = $this->showDate($student);

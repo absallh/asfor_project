@@ -99,6 +99,92 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-3">
+                    <div class="card bg-gradient-default radius shadow-2xl">
+                        <!-- Card body -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-white mb-0">Student Job</h5>
+                                    <span class="h2 font-weight-bold text-white mb-0">{{ $student->student_job }}</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-red text-white rounded-circle shadow">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-gradient-default radius shadow-2xl">
+                        <!-- Card body -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-white mb-0">Father Job</h5>
+                                    <span class="h2 font-weight-bold text-white mb-0">@if (is_null($student->father_job)) {{'N/A'}}  @endif{{ $student->father_job }}</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-red text-white rounded-circle shadow">
+                                        <i class="fas fa-calendar-minus"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body bg-gray-100 radius shadow-2xl">
+                            <h5 class="card-title text-uppercase mb-0">Mother Job</h5>
+                            <span class="h2 font-weight-bold mb-0">@if (is_null($student->mother_job)) {{'N/A'}}  @endif{{ $student->mother_job }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body bg-gray-100 radius shadow-2xl">
+                            <h5 class="card-title text-uppercase mb-0">Parents Status</h5>
+                            <span class="h2 font-weight-bold mb-0">@if (is_null($student->parents_status)) {{'N/A'}}  @endif{{ $student->parents_status }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body bg-gray-100 radius shadow-2xl">
+                            <h5 class="card-title text-uppercase mb-0">education type</h5>
+                            <span class="h2 font-weight-bold mb-0">@if (is_null($student->education_type)) {{'N/A'}}  @endif{{ $student->education_type }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body bg-gray-100 radius shadow-2xl">
+                            <h5 class="card-title text-uppercase mb-0">school</h5>
+                            <span class="h2 font-weight-bold mb-0">@if (is_null($student->school)) {{'N/A'}}  @endif{{ $student->school }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-gradient-default radius shadow-2xl">
+                        <!-- Card body -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-white mb-0">school level</h5>
+                                    <span class="h2 font-weight-bold text-white mb-0">@if (is_null($student->school_level)) {{'N/A'}}  @endif{{ $student->school_level }}</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-red text-white rounded-circle shadow">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-12">
@@ -118,6 +204,14 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body bg-gray-100 radius shadow-2xl">
+                            <h5 class="card-title text-uppercase mb-0">Description</h5>
+                            <span class="h2 font-weight-bold mb-0">@if (is_null($student->description)) {{'N/A'}}  @endif{{ $student->description }}</span>
                         </div>
                     </div>
                 </div>
@@ -209,6 +303,9 @@
                                 <tr>
                                     <th scope="col" class="sort" data-sort="number">#</th>
                                     <th scope="col" class="sort" data-sort="subject">Subject</th>
+                                    <th scope="col" class="sort" data-sort="subject">Teacher Id</th>
+                                    <th scope="col" class="sort" data-sort="subject">Join Date</th>
+                                    <th scope="col" class="sort" data-sort="subject">Leave Date</th>
                                     <th scope="col" class="sort" data-sort="action">Action</th>
                                 </tr>
                                 </thead>
@@ -220,6 +317,15 @@
                                         </td>
                                         <td class="text-capitalize">
                                             {{ $subject->name }}
+                                        </td>
+                                        <td class="text-capitalize">
+                                            {{ $subject->employee_id }}
+                                        </td>
+                                        <td class="text-capitalize">
+                                            @if (!is_null($subject->pivot->join_at)) {{ date('d/m/Y', strtotime($subject->pivot->join_at)) }}  @endif
+                                        </td>
+                                        <td class="text-capitalize">
+                                            @if (!is_null($subject->pivot->leave_at)) {{ date('d/m/Y', strtotime($subject->pivot->leave_at)) }}  @endif
                                         </td>
                                         <td>
                                             <a href="{{ route('subject.show', $subject) }}" class="btn btn-sm bg-blue-500 text-white m-0 radius" title="edit">

@@ -30,6 +30,14 @@ class StoreStudentRequest extends FormRequest
             'address' => ['nullable', 'max:255'],
             'personuid' => ['required', 'unique:students', 'min:14', 'max:14'],
             'apply_date' => ['nullable', 'date'],
+            'description' => ['nullable', 'string'],
+            'education_type' => ['nullable', 'string'],
+            'student_job' => ['nullable', 'string'],
+            'school' => ['nullable', 'string'],
+            'school_level' => ['nullable', 'string'],
+            'parents_status' => ['nullable', 'string'],
+            'father_job' => ['nullable', 'string'],
+            'mother_job' => ['nullable', 'string'],
             //'join_date' => ['date']
         ];
     }

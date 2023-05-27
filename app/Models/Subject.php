@@ -46,7 +46,7 @@ class Subject extends Model
     public function students(): BelongsToMany
     {
 
-        return $this->belongsToMany(Student::class, 'subject_student', 'subject_id', 'student_id')->withTimestamps()->withPivot('join_date');
+        return $this->belongsToMany(Student::class, 'subject_student', 'subject_id', 'student_id')->withTimestamps()->withPivot('leave_count', 'leave_at', 'reason', 'level', 'join_date');
     }
 
     /**

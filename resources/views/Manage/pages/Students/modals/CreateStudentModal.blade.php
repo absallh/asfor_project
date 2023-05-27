@@ -38,6 +38,18 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label class="form-control-label" for="student_job">Student Job</label>
+                                    <input type="text" id="student_job" class="form-control name radius @error('student_job') is-invalid @enderror"
+                                           value="{{ old('student_job') }}" name="student_job" placeholder="Try The Job">
+                                    @error('student_job')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label class="form-control-label" for="mother name">mother name</label>
                                     <input type="text" id="mother_name" class="form-control name radius @error('mother_name') is-invalid @enderror"
                                            value="{{ old('mother_name') }}" name="mother_name" placeholder="Try The Mother of dragons">
@@ -48,6 +60,88 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="father_job">Father Job</label>
+                                    <input type="text" id="father_job" class="form-control name radius @error('father_job') is-invalid @enderror"
+                                           value="{{ old('father_job') }}" name="father_job" placeholder="Try Snow">
+                                    @error('father_job')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="mother_job">Mother Job</label>
+                                    <input type="text" id="mother_job" class="form-control name radius @error('mother_job') is-invalid @enderror"
+                                           value="{{ old('mother_job') }}" name="mother_job" placeholder="Try Snow">
+                                    @error('mother_job')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="parents_status">Parents Status</label>
+                                    <select id="parents_status" name="parents_status"  class="form-control radius">
+                                        <option value="">Select Status</option>
+                                        <option value="مستقرة">مستقرة</option>
+                                        <option value="منفصلين">منفصلين</option>
+                                        <option value="مطلقين">مطلقين</option>
+                                    </select>
+                                    @error('parents_status')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="education_type">Education Type</label>
+                                    <select id="education_type" name="education_type"  class="form-control radius">
+                                        <option value="">Select Type</option>
+                                        <option value="عام">عام</option>
+                                        <option value="أزهري">أزهري</option>
+                                    </select>
+                                    @error('education_type')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="school">school</label>
+                                    <input type="text" id="school" class="form-control name radius @error('school') is-invalid @enderror"
+                                           value="{{ old('school') }}" name="school" placeholder="Try shoubra elkhama">
+                                    @error('school')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="school_level">School Level</label>
+                                    <input type="text" id="school_level" class="form-control name radius @error('school_level') is-invalid @enderror"
+                                           value="{{ old('school_level') }}" name="school_level" placeholder="Try shoubra elkhama">
+                                    @error('school_level')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+
+
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-control-label" for="address">address</label>
@@ -77,6 +171,18 @@
                                     <label class="form-control-label" for="apply date">apply date</label>
                                     <input class="form-control datepicker  @error('apply_date') is-invalid @enderror " name="apply_date" id="apply_date" placeholder="Select apply date" type="text" value="">
                                     @error('apply_date')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="description">Description</label>
+                                    <textarea type="number" id="description" class="form-control description radius @error('description') is-invalid @enderror"
+                                              name="description" placeholder="Try 10" rows="6"> </textarea>
+                                    @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
